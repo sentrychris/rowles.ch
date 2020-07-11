@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: 'development',
@@ -8,25 +9,34 @@ module.exports = {
         compress: true,
         port: 9000
     },
-    entry: './resources/assets/js/main.js',
+    entry: [
+        './resources/assets/js/main.js',
+        './resources/assets/scss/app.scss'
+    ],
     output: {
-        filename: 'app.js',
-        path: path.resolve(__dirname, 'public/js'),
+        filename: 'js/main.js',
+        path: path.resolve(__dirname, 'public'),
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "css/[name].css",
+            chunkFilename: "css/[id].css"
+        }),
+    ],
     module:  {
         rules: [
             {
-                test: /\.(scss)$/,
-                use: [{
-                    // injects CSS into the page.
-                    loader: 'style-loader',
-                }, {
-                    // Translates CSS into CommonJS modules.
-                    loader: 'css-loader',
-                }, {
-                    // Compiles Sass to CSS.
-                    loader: 'sass-loader'
-                }]
+                test: /\.s?css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: []
             },
         ],
     }
