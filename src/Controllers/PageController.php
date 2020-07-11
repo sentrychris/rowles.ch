@@ -11,7 +11,8 @@ use Rowles\Models\Blog;
 class PageController extends Controller
 {
 
-    protected $blog;
+    /** @var Blog $blog */
+    protected Blog $blog;
 
     /**
      * BlogController constructor.

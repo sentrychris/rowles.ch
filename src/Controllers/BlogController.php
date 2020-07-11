@@ -13,7 +13,7 @@ use Rowles\Models\Blog;
 class BlogController extends Controller
 {
     /** @var Blog $blog */
-    protected $blog;
+    protected Blog $blog;
 
     /** @var array $views */
     protected static $views = [

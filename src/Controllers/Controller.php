@@ -22,7 +22,7 @@ abstract class Controller
     protected $view;
 
     /** @var array $data */
-    public $data = [];
+    public array $data = [];
 
     /**
      * Abstract Controller constructor.
