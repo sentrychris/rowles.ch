@@ -1,9 +1,8 @@
 import 'bootstrap';
-import './_fontawesome';
 
-import { App, blog } from './app';
+import { app, blog } from './app';
 
-window.App = App;
+window.app = app;
 window.blog = blog;
 
 

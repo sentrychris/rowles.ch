@@ -4,9 +4,18 @@ window.$ = window.jQuery = jQuery;
 import Swal from 'sweetalert2'
 window.swal = Swal;
 
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faEnvelope, faFacebookF, faGithub, faTwitter );
+dom.watch();
+
+import { notification } from './notification';
+
 const banner = $('.environ-banner');
 
-const App = {
+const app = {
     setActiveMenuItem: items => {
         let path = location.pathname;
         $.each(items, (index, item) => {
@@ -25,7 +34,7 @@ const App = {
     },
 
     notify: (msg, type) => {
-        notif({
+        notification({
             msg: msg,
             type: type,
             position: "center"
@@ -101,23 +110,23 @@ const blog = {
 };
 
 if (sessionStorage.getItem("bannerRemoved")) {
-    App.removeEnvironBanner();
+    app.removeEnvironBanner();
 }
 
 $(() => {
     banner.click(() => {
-        App.removeEnvironBanner();
+        app.removeEnvironBanner();
     });
 
-    App.setActiveMenuItem($('.header .menu li a'));
+    app.setActiveMenuItem($('.header .menu li a'));
 
     if (localStorage.getItem('notify') && localStorage.getItem('message')) {
-        App.notify('<b>' + localStorage.getItem("message") + '</b>', localStorage.getItem('type'));
+        app.notify('<b>' + localStorage.getItem("message") + '</b>', localStorage.getItem('type'));
         ['notify', 'message', 'type'].forEach(key => localStorage.removeItem(key));
     }
 });
 
 export {
-    App,
+    app,
     blog
 };
