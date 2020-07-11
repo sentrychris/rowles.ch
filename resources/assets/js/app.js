@@ -1,7 +1,5 @@
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
-
-import Swal from 'sweetalert2'
+import 'trumbowyg';
+import Swal from 'sweetalert2';
 window.swal = Swal;
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
@@ -14,7 +12,6 @@ dom.watch();
 import { notification } from './notification';
 
 const banner = $('.environ-banner');
-
 const app = {
     setActiveMenuItem: items => {
         let path = location.pathname;

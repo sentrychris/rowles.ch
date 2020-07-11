@@ -1,0 +1,35 @@
+.environ-banner {
+  height: 25px;
+  line-height: 25px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+
+  .development {
+    background-color: #5cd75c;
+  }
+
+  .staging {
+    background-color: #f05340;
+  }
+}
+
+.debug-exception-container {
+  padding: 10px;
+  background: #3c3c3c;
+  border-radius: 10px;
+
+  .debug-exception {
+    font-family: monospace;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: .83em 0;
+    color: #d75757;
+  }
+
+  .trace {
+    color: white;
+    font-size: 0.85em;
+  }
+}
