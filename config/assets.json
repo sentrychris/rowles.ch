@@ -1,0 +1,45 @@
+{
+    "vendor": {
+        "styles": [
+            "resources/assets/scss/fonts.scss",
+            "resources/assets/css/pure.css",
+            "node_modules/trumbowyg/dist/ui/trumbowyg.min.css",
+            "node_modules/notifit-js/notifIt/css/notifIt.css",
+            "node_modules/sweetalert2/dist/sweetalert2.css"
+        ],
+        "css": "bundle.min.css",
+        "scripts": [
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/trumbowyg/dist/trumbowyg.min.js",
+            "node_modules/notifit-js/notifIt/js/notifIt.js",
+            "node_modules/sweetalert2/dist/sweetalert2.js"
+        ],
+        "js": "bundle.min.js"
+    },
+    "app": {
+        "styles": [
+            "resources/assets/scss/app.scss"
+        ],
+        "css": "app.min.css",
+        "scripts": [
+            "resources/assets/js/app.js"
+        ],
+        "js": "app.min.js"
+    },
+    "assets": {
+        "media": {
+            "images": [
+                "resources/assets/images/**/*.jpg",
+                "resources/assets/images/**/*.png",
+                "resources/assets/images/**/*.svg"
+            ]
+        },
+        "fonts": [
+            "node_modules/@fortawesome/fontawesome-free/webfonts/*"
+        ],
+        "favicons": [
+            "resources/assets/icons/*"
+        ]
+    },
+    "out": "./public"
+}

@@ -1,0 +1,34 @@
+{
+    "name": "raekw0n/rowles.ch",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Rowles",
+            "email": "me@rowles.ch"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rowles\\": "src/"
+        },
+        "files": [
+            "src/Core/Helpers/functions.php"
+        ]
+    },
+    "require": {
+        "ext-pdo": "*",
+        "ext-json": "*",
+        "ext-posix": "*",
+        "twig/twig": "^2.11",
+        "klein/klein": "^2.1",
+        "pimple/pimple": "^3.2",
+        "monolog/monolog": "^1.24",
+        "vlucas/phpdotenv": "^3.4",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7",
+        "symfony/var-dumper": "^4.3"
+    }
+}

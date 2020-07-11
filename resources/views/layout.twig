@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="I'm Chris Rowles, a Software Developer based in Rushden, United Kingdom. Please get in touch for a free quote on your project, I would love to help!">
+    <meta name="author" content="Chris Rowles">
+    
+    <meta property="og:title" content="Chris Rowles | Software Developer" />
+    <meta property="og:description" content="I'm Chris Rowles, a Full Stack Developer based in Rushden, United Kingdom. Please get in touch for a free quote on your project, I would love to help!">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.rowles.ch" />
+
+    <title>{{ title }}</title>
+    {% block additional_styles %}{% endblock %}
+</head>
+<body>
+<div class="header">
+    <div class="container clearfix">
+        <a href="/"><div id="logo"> CR </div></a>
+        
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/experience">Experience</a></li>
+            <li><a href="/blog">Blog</a></li>
+        </ul>
+
+        <ul class="contact">
+            <li><a href="https://www.twitter.com/_raekw0n"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/raekw0n"><i class="fab fa-github"></i></a></li>
+            <li><a href="mailto:me@rowles.ch"><i class="fa fa-envelope"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="clear-float"></div>
+
+<main id="content-wrapper">
+    {% if env('APP_ENV') is not same as('production') %}
+        <div class="environ-banner">
+            <div class={{ env("APP_ENV") }}>
+                <p>{{ env("APP_ENV") }}</p>
+            </div>
+        </div>
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+</main>
+
+<div id="footer">
+    Made with <span class="love"></span> by CR
+</div>
+<script type="text/javascript" src="{{ asset({file: 'app.js'}) }}"></script>
+{% block additional_scripts %}{% endblock %}
+</body>
+</html>

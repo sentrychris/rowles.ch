@@ -1,0 +1,16 @@
+/.idea
+/node_modules
+/vendor
+/.env
+/logs/*
+/public/cache/*
+/public/css
+/public/images
+/public/js
+/public/webfonts
+/public/*.png
+/public/*.ico
+/public/*.xml
+/public/*.json
+!/logs/README.md
+!/public/cache/.gitkeep

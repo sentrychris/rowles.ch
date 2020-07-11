@@ -1,0 +1,58 @@
+{% extends "layout.twig" %}
+
+{% block additional_styles %}
+{% endblock %}
+
+{% block content %}
+    <div id="content" class="container">
+        <div id="page-header">
+            <h1>Blog.</h1>
+            <h3>Random bits and pieces.</h3>
+            <div class="text-right">
+                <a class="swal-button swal-button--confirm" href="/blog/create">
+                    New Blog Post
+                </a>
+            </div>
+        </div>
+        <hr/>
+        <div id="posts-wrapper">
+            {% if posts is not empty %}
+                {% for post in posts %}
+                    <div class="posts">
+                        <section class="post-{{ post.id }}">
+                            <div class="post-header">
+
+                                <h1 class="post-title">{{ post.title }}</h1>
+
+                                <p class="post-meta">
+                                    By <span class="post-author">{{ post.author }}</span>
+                                    on <span class="post-created-at">{{ post.created_at|date('jS F Y') }}</span>
+                                </p>
+                                <div class="content-separator"></div>
+                            </div>
+
+                            <div class="post-content">
+                                <div class="blog-post">
+                                    {{ post.content | raw }}
+                                </div>
+                                <br/><br/>
+                                <a class="swal-button swal-button--default" href="/blog/{{ post.id }}/view">View</a>
+                            </div>
+                        </section>
+                    </div>
+                    <hr/>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            blog.describePost({{ post.id }});
+                        });
+                    </script>
+                {% endfor %}
+            {% else %}
+                <p><em>There is nothing here...</em></p>
+            {%  endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+{% endblock %}
