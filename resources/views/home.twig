@@ -92,9 +92,13 @@
                     <div class="blurb-header">Latest Posts</div>
                     <div class="blurb-content">
                         <ul class="list">
-                            {% for post in posts %}
-                                <li><a href="/blog/{{ post.id }}/view" target="_blank">{{ post.title }}</a></li>
-                            {%  endfor %}
+                            {% if posts is not empty %}
+                                {% for post in posts %}
+                                    <li><a href="/blog/{{ post.id }}/view" target="_blank">{{ post.title }}</a></li>
+                                {%  endfor %}
+                            {% else %}
+                                <li><em class="text-muted">There is nothing here...</em></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

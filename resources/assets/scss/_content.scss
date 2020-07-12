@@ -88,6 +88,13 @@
   }
 }
 
+.love {
+  color: $danger;
+  &:hover {
+    color: #f05340;
+  }
+}
+
 #footer {
   position: relative;
   width: 100%;
