@@ -18,21 +18,21 @@ class ViewServiceProvider implements ServiceProviderInterface
     /**
      * Register view service provider.
      *
-     * @param Container $container
+     * @param Container $pimple
      * @return Container
      */
-    public function register(Container $container)
+    public function register(Container $pimple): Container
     {
         $loader = new FilesystemLoader($this->viewPath());
-        $container['view'] = new Environment($loader, [
+        $pimple['view'] = new Environment($loader, [
             'cache' => env('APP_CACHE') ?? $this->cachePath(),
             'debug' => env('APP_DEBUG'),
         ]);
-        $container['view']->addExtension(new DebugExtension());
-        $container['view']->addExtension(new DotenvExtension());
-        $container['view']->addExtension(new AssetExtension());
+        $pimple['view']->addExtension(new DebugExtension());
+        $pimple['view']->addExtension(new DotenvExtension());
+        $pimple['view']->addExtension(new AssetExtension());
 
-        return $container;
+        return $pimple;
     }
 
     /**
@@ -40,7 +40,7 @@ class ViewServiceProvider implements ServiceProviderInterface
      *
      * @return string
      */
-    private function viewPath()
+    private function viewPath(): string
     {
         return __DIR__ . '/../../../resources/views';
     }
@@ -50,7 +50,7 @@ class ViewServiceProvider implements ServiceProviderInterface
      *
      * @return string
      */
-    private function cachePath()
+    private function cachePath(): string
     {
         return __DIR__ . '/../../../public/cache';
     }

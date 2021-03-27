@@ -2,6 +2,7 @@
 
 namespace Rowles\Models;
 
+use Exception;
 use Rowles\Core\Models\Model;
 
 /**
@@ -10,31 +11,30 @@ use Rowles\Core\Models\Model;
 class Blog extends Model
 {
     /** @var int $id */
-    protected $id;
+    protected int $id;
 
     /** @var string $title */
-    protected $title;
+    protected string $title;
 
     /** @var string $content */
-    protected $content;
+    protected string $content;
 
     /** @var string $author */
-    protected $author;
+    protected string $author;
 
     /** @var array $post */
-    protected $post;
+    protected array $post;
 
     /**
      * Set blog post attributes.
      *
      * @param array $data
-     * @return mixed
+     * @return Blog
      */
-    public function setAttributes(array $data)
+    public function setAttributes(array $data): Blog
     {
         try {
-
-            if($data['id']) {
+            if(isset($data['id'])) {
                 $this->setId($data['id']);
             }
 
@@ -44,7 +44,7 @@ class Blog extends Model
 
             $this->post = $data;
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->log->error($e->getMessage());
         }
 
@@ -56,7 +56,7 @@ class Blog extends Model
      *
      * @return bool
      */
-    public function save()
+    public function save(): bool
     {
         try {
             $this->validate($this->post);
@@ -71,7 +71,7 @@ class Blog extends Model
             $this->db->bind(':author', $this->author);
 
             $this->db->execute();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->log->error($e->getMessage());
             return false;
         }
@@ -84,7 +84,7 @@ class Blog extends Model
      *
      * @return bool
      */
-    public function update()
+    public function update(): bool
     {
         try {
             $this->validate($this->post);
@@ -100,7 +100,7 @@ class Blog extends Model
             $this->db->bind(':id', $this->id);
 
             $this->db->execute();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->log->error($e->getMessage());
             return false;
         }
@@ -114,7 +114,7 @@ class Blog extends Model
      * @param int $id
      * @return bool
      */
-    public function delete(int $id)
+    public function delete(int $id): bool
     {
         try {
             $this->setId($id);
@@ -123,7 +123,7 @@ class Blog extends Model
             $this->db->bind(':id', $this->id);
 
             $this->db->execute();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->log->error($e->getMessage());
             return false;
         }
@@ -145,14 +145,13 @@ class Blog extends Model
     /**
      * Get all posts.
      *
+     * @param int $id
      * @return mixed
      */
-    public function getPost($id)
+    public function getPost(int $id)
     {
-        $this->setId($id);
-
         $this->db->query('SELECT id, title, content, author, created_at FROM blog WHERE id = :id ORDER BY created_at DESC;');
-        $this->db->bind(':id', $this->id);
+        $this->db->bind(':id', $id);
 
         return $this->db->single();
     }
@@ -160,83 +159,84 @@ class Blog extends Model
     /**
      * Validate post data.
      *
-     * @param $data
+     * @param array $data
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
-    public function validate($data)
+    public function validate(array $data): bool
     {
         if (!empty($data)) {
             if (isset($data['title']) && isset($data['content']) && isset($data['author'])) {
                 return true;
             } else {
-                throw new \Exception('Not all required parameters are set.');
+                throw new Exception('Not all required parameters are set.');
             }
         } else {
-            throw new \Exception('No parameters are set.');
+            throw new Exception('No parameters are set.');
         }
     }
 
     /**
+     * @param int $id
      * @return mixed
      */
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
-    public function setContent($content): void
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAuthor()
+    public function getAuthor(): string
     {
         return $this->author;
     }
 
     /**
-     * @param mixed $author
+     * @param string $author
      */
-    public function setAuthor($author): void
+    public function setAuthor(string $author): void
     {
         $this->author = $author;
     }

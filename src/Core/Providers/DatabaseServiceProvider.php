@@ -14,13 +14,13 @@ class DatabaseServiceProvider implements ServiceProviderInterface
     /**
      * Register database service provider.
      *
-     * @param Container $container
+     * @param Container $pimple
      * @return Container
      */
-    public function register(Container $container)
+    public function register(Container $pimple): Container
     {
-        $container['db'] = new Database();
+        $pimple['db'] = new Database();
 
-        return $container;
+        return $pimple;
     }
 }

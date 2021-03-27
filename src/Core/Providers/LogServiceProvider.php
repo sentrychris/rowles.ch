@@ -15,20 +15,20 @@ class LogServiceProvider implements ServiceProviderInterface
     /**
      * Register log service provider.
      *
-     * @param Container $container
+     * @param Container $pimple
      * @return Container|string
      */
-    public function register(Container $container)
+    public function register(Container $pimple)
     {
-        $container['log'] = new Logger('app');
+        $pimple['log'] = new Logger('app');
 
         try {
-            $container['log']->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
+            $pimple['log']->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
 
-        return $container;
+        return $pimple;
     }
 
     /**
@@ -36,7 +36,7 @@ class LogServiceProvider implements ServiceProviderInterface
      *
      * @return string
      */
-    private function logPath()
+    private function logPath(): string
     {
         return __DIR__ . '/../../../logs/app.log';
     }

@@ -16,7 +16,7 @@ class BlogController extends Controller
     protected Blog $blog;
 
     /** @var array $views */
-    protected static $views = [
+    protected static array $views = [
         'create' => 'blog/create',
         'edit'   => 'blog/edit',
         'home'   => 'blog/home',
@@ -91,9 +91,10 @@ class BlogController extends Controller
      * Submit a new blog post.
      *
      * @param Request $request
-     * @return mixed
+     * @param Response $response
+     * @return Response
      */
-    public function submit(Request $request, Response $response)
+    public function submit(Request $request, Response $response): Response
     {
         if ($request->param('id')) {
             // TODO Detect when caller is ajax method
@@ -118,9 +119,10 @@ class BlogController extends Controller
      * Delete a blog post.
      *
      * @param Request $request
+     * @param Response $response
      * @return Response $response
      */
-    public function delete(Request $request, Response $response)
+    public function delete(Request $request, Response $response): Response
     {
         $id = $request->param('id');
         if ($this->blog->delete($id)) {

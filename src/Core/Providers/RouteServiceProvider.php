@@ -14,13 +14,13 @@ class RouteServiceProvider implements ServiceProviderInterface
     /**
      * Register route service provider.
      *
-     * @param Container $container
+     * @param Container $pimple
      * @return Container
      */
-    public function register(Container $container)
+    public function register(Container $pimple): Container
     {
-        $container['router'] = new Klein();
+        $pimple['router'] = new Klein();
 
-        return $container;
+        return $pimple;
     }
 }

@@ -63,7 +63,6 @@ abstract class Controller
      * Renders templates with view data.
      *
      * @param string $template
-     * @param array  $data
      * @return mixed
      */
     protected function render(string $template)
@@ -79,7 +78,7 @@ abstract class Controller
      * @param string $template
      * @return string
      */
-    private function getTemplate(string $template)
+    private function getTemplate(string $template): string
     {
         if(strpos($template, '.twig') === false) {
             return $template.'.twig';
