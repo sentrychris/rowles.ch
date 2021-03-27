@@ -14,6 +14,7 @@
 .swal-button--cancel {
   color: #f5f5f5;
   background-color: #f05340;
+  border: 1px solid #f05340;
 
   &:hover {
     color: #f05340;
@@ -28,12 +29,13 @@
 
 .swal-button--confirm {
   color: #f5f5f5;
-  background-color: #46f052;
+  background-color: #42B983;
+  border: 1px solid #42B983;
 
   &:hover {
-    color: #46f052;
+    color: #42B983;
     background-color: #ffffff;
-    border: 1px solid #46f052;
+    border: 1px solid #42B983;
   }
 
   &:not([disabled]):hover {
@@ -44,6 +46,7 @@
 .swal-button--action {
   color: #f5f5f5;
   background-color: #a6b4ff;
+  border: 1px solid #a6b4ff;
 
   &:hover {
     color: #a6b4ff;
@@ -59,6 +62,7 @@
 .swal-button--default {
   color: #f5f5f5;
   background-color: #373737;
+  border: 1px solid #373737;
 
   &:hover {
     color: #373737;

@@ -88,6 +88,10 @@
   }
 }
 
+.trumbowyg-box, .trumbowyg-editor {
+    margin: 0 auto;
+}
+
 .love {
   color: $danger;
   &:hover {
