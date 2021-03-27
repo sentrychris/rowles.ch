@@ -23,24 +23,21 @@
 
 {% block content %}
     <div id="content" class="container-fluid editor">
-        <div id="page-header">
-            <div class="pure-g">
-                <div class="pure-u-1 pure-u-md-2-3">
-                    <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
-                    <input type="hidden" name="post-author" id="post-author" value="{{ post.author }}">
-                    <h1>
-                        <label for="post-title"></label>
-                        <input type="text" name="post-title" id="post-title" class="post-title" placeholder="Insert title here..."
-                               value="{{ post.title }}">
-                    </h1>
-                </div>
-                <div class="pure-u-1 pure-u-md-1-3 justify-center">
-                    <button class="form-submit swal-button swal-button--confirm" type="submit" onclick="blog.submitPost(true)">save</button>
-                </div>
+        <div class="d-flex flex-column px-0 px-md-5">
+            <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
+            <input type="hidden" name="post-author" id="post-author" value="{{ post.author }}">
+            <h1>
+                <label for="post-title"></label>
+                <input type="text" name="post-title" id="post-title" class="post-title" placeholder="Insert title here..."
+                       value="{{ post.title }}">
+            </h1>
+            <div class="mt-4 d-flex justify-content-start">
+                <button class="form-submit swal-button swal-button--confirm mr-3" onclick="blog.submitPost(true)"
+                        type="submit">save
+                </button>
+                <a class="form-submit swal-button swal-button--default" href="/blog">Cancel</a>
             </div>
-        </div>
-        <div class="pure-g">
-            <div class="pure-u-1 pure-u-md-1-1">
+            <div class="editor-area mt-2">
                 <label for="h"></label>
                 <textarea class="edit-content" placeholder="Start writing HTML here..." id="h">{{ post.content }}</textarea>
             </div>
