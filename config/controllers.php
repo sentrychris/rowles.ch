@@ -3,9 +3,16 @@
 /*----------------------------------------
  | Register application controllers       |
  ----------------------------------------*/
+
+use Rowles\Controllers\AuthController;
+use Rowles\Controllers\BlogController;
+use Rowles\Controllers\PageController;
+
+/** @var $app */
 $controllers = [
-    'page' => new \Rowles\Controllers\PageController($app),
-    'blog' => new \Rowles\Controllers\BlogController($app)
+    'auth' => new AuthController($app),
+    'page' => new PageController($app),
+    'blog' => new BlogController($app)
 ];
 
 return extract($controllers);
