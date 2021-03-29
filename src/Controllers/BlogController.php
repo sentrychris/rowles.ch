@@ -7,11 +7,12 @@ use Klein\Request;
 use Klein\Response;
 use Pimple\Container;
 use Rowles\Models\Blog;
+use Rowles\Controllers\Auth\AuthController;
 
 /**
  * Blog controller class.
  */
-class BlogController extends Controller
+class BlogController extends AuthController
 {
     /** @var Blog $blog */
     protected Blog $blog;
@@ -71,7 +72,7 @@ class BlogController extends Controller
      */
     public function create(array $data = [])
     {
-        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
+        if ($this->user->check()) {
             return $this->setViewData($data)->render(static::$views[__FUNCTION__]);
         } else {
             throw new Exception('Unauthorized', 401);
@@ -88,7 +89,7 @@ class BlogController extends Controller
      */
     public function edit(int $id, array $data = [])
     {
-        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
+        if ($this->user->check()) {
             $data['post'] = $this->blog->getPost($id);
             $data['title'] = $data['post']['title'];
 
@@ -108,7 +109,7 @@ class BlogController extends Controller
      */
     public function submit(Request $request, Response $response): Response
     {
-        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
+        if ($this->user->check()) {
             if ($request->param('id')) {
                 // TODO Detect when caller is ajax method
                 if ($this->blog->setAttributes($request->params())->update()) {
@@ -140,8 +141,7 @@ class BlogController extends Controller
      */
     public function delete(Request $request, Response $response): Response
     {
-        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
-
+        if ($this->user->check()) {
             $id = $request->param('id');
             if ($this->blog->delete($id)) {
                 $return = ['message' => 'Blog post successfully deleted!', 'status' => 'success'];

@@ -145,6 +145,15 @@ class User extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function check(): bool
+    {
+        return isset($_SESSION['authenticated']) && $_SESSION['authenticated']
+            && isset($_SESSION['id']) && $_SESSION['id'] === session_id();
+    }
+
+    /**
      * Delete a user.
      *
      * @param int $id
