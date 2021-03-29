@@ -7,7 +7,6 @@ use Klein\Request;
 use Klein\Response;
 use Pimple\Container;
 use Rowles\Models\Blog;
-use Rowles\Models\Session;
 
 /**
  * Blog controller class.
@@ -24,10 +23,6 @@ class BlogController extends Controller
         'home'   => 'blog/home',
         'view'   => 'blog/view',
     ];
-    /**
-     * @var Session
-     */
-    private Session $session;
 
     /**
      * BlogController constructor.
@@ -37,7 +32,6 @@ class BlogController extends Controller
     public function __construct(Container $container)
     {
         $this->blog = new Blog($container);
-        $this->session = new Session($container);
 
         parent::__construct($container);
     }
@@ -73,7 +67,7 @@ class BlogController extends Controller
     /**
      * @param array $data
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function create(array $data = [])
     {

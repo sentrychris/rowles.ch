@@ -33,10 +33,12 @@ class AuthController extends Controller
     /**
      * @param Request $request
      * @param Response $response
+     * @return Response
      */
-    public function logout(Request $request, Response $response)
+    public function logout(Request $request, Response $response): Response
     {
         $this->session->delete();
-        $response->redirect('/')->send();
+
+        return $response->redirect($request->headers()->get('referer'))->send();
     }
 }
