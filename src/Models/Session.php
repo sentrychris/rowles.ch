@@ -75,6 +75,33 @@ class Session extends Model
     }
 
     /**
+     * Delete a session.
+     *
+     * @return bool
+     */
+    public function delete(): bool
+    {
+        try {
+            $id = $_SESSION['id'];
+            $user_id = $_SESSION['user']['id'];
+
+            $this->db->query("DELETE FROM sessions WHERE id = :id AND user_id = :user_id");
+
+            $this->db->bind(':id', $id);
+            $this->db->bind(':user_id', $user_id);
+
+            $this->db->execute();
+
+            session_destroy();
+        } catch (Exception $e) {
+            $this->log->error($e->getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Validate post data.
      *
      * @param array $data

@@ -33,6 +33,9 @@
             <li><a href="https://www.twitter.com/_raekw0n"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/raekw0n"><i class="fab fa-github"></i></a></li>
             <li><a href="mailto:me@rowles.ch"><i class="fa fa-envelope"></i></a></li>
+            {% if session.authenticated %}
+                <li><a href="/logout"><i class="fa fa-power-off text-danger"></i></a></li>
+            {% endif %}
         </ul>
     </div>
 </div>

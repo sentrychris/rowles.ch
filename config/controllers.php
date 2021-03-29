@@ -4,11 +4,12 @@
  | Register application controllers       |
  ----------------------------------------*/
 
-use Rowles\Controllers\Auth\{RegisterController, LoginController};
 use Rowles\Controllers\{BlogController, PageController};
+use Rowles\Controllers\Auth\{AuthController, RegisterController, LoginController};
 
 /** @var $app */
 $controllers = [
+    'auth' => new AuthController($app),
     'register' => new RegisterController($app),
     'login' => new LoginController($app),
     'page' => new PageController($app),

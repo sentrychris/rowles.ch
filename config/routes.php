@@ -6,7 +6,7 @@
 
 use Pimple\Container;
 use Rowles\Controllers\Auth\RegisterController;
-use Rowles\Controllers\{Auth\LoginController, BlogController, PageController};
+use Rowles\Controllers\{Auth\AuthController, Auth\LoginController, BlogController, PageController};
 
 /** @var Container $app */
 
@@ -24,6 +24,7 @@ $app['router']->get('/', function () use ($page) {
 
 /**
  * Auth routes.
+ * @var AuthController $auth
  * @var RegisterController $register
  * @var LoginController $login
  */
@@ -38,6 +39,9 @@ $app['router']->get('/login', function () use ($login) {
 });
 $app['router']->post('/login', function ($request, $response) use ($login) {
     return $login->submit($request, $response);
+});
+$app['router']->get('/logout', function ($request, $response) use ($auth) {
+    return $auth->logout($request, $response);
 });
 
 

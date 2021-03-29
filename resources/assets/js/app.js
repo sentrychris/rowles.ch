@@ -3,10 +3,10 @@ import Swal from 'sweetalert2';
 window.swal = Swal;
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faHeart, faSignOutAlt, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-library.add(faEnvelope, faHeart, faFacebookF, faGithub, faTwitter );
+library.add(faEnvelope, faHeart, faSignOutAlt, faPowerOff, faFacebookF, faGithub, faTwitter );
 dom.watch();
 
 import { notification } from './notification';

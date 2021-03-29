@@ -2,6 +2,8 @@
 
 namespace Rowles\Controllers\Auth;
 
+use Klein\Request;
+use Klein\Response;
 use Pimple\Container;
 use Rowles\Models\User;
 use Rowles\Models\Session;
@@ -26,5 +28,15 @@ class AuthController extends Controller
         $this->session = new Session($container);
 
         parent::__construct($container);
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     */
+    public function logout(Request $request, Response $response)
+    {
+        $this->session->delete();
+        $response->redirect('/')->send();
     }
 }
