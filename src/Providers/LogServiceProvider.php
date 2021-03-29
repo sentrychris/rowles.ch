@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Core\Providers;
+namespace Rowles\Providers;
 
 use Monolog\Logger;
 use Pimple\Container;
@@ -38,6 +38,6 @@ class LogServiceProvider implements ServiceProviderInterface
      */
     private function logPath(): string
     {
-        return __DIR__ . '/../../../logs/app.log';
+        return __DIR__ . '/../../logs/app.log';
     }
 }

@@ -14,10 +14,10 @@ Dotenv\Dotenv::create(__DIR__ . '/../')->load();
  ----------------------------------------*/
 $app = new Pimple\Container();
 
-$app->register(new Rowles\Core\Providers\LogServiceProvider());
-$app->register(new Rowles\Core\Providers\DatabaseServiceProvider());
-$app->register(new Rowles\Core\Providers\RouteServiceProvider());
-$app->register(new Rowles\Core\Providers\ViewServiceProvider());
+$app->register(new Rowles\Providers\LogServiceProvider());
+$app->register(new Rowles\Providers\DatabaseServiceProvider());
+$app->register(new Rowles\Providers\RouteServiceProvider());
+$app->register(new Rowles\Providers\ViewServiceProvider());
 
 /**
  * boot method to fetch services from the container
@@ -41,4 +41,4 @@ require_once __DIR__.'/../config/controllers.php';
  ----------------------------------------*/
 require_once __DIR__.'/../config/routes.php';
 
-new \Rowles\Core\Handlers\ExceptionHandler($app);
+new Rowles\Handlers\ExceptionHandler($app);

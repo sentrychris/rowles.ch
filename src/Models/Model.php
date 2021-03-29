@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Core\Models;
+namespace Rowles\Models;
 
 use Pimple\Container;
 

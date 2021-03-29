@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Core;
+namespace Rowles;
 
 use Exception;
 use PDO;

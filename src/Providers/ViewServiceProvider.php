@@ -1,15 +1,15 @@
 <?php
 
-namespace Rowles\Core\Providers;
+namespace Rowles\Providers;
 
 use Pimple\Container;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Extension\DebugExtension;
 use Pimple\ServiceProviderInterface;
-use Rowles\Core\Extensions\Twig\AssetExtension;
-use Rowles\Core\Extensions\Twig\DotenvExtension;
-use Rowles\Core\Extensions\Twig\SessionExtension;
+use Rowles\Extensions\Twig\AssetExtension;
+use Rowles\Extensions\Twig\DotenvExtension;
+use Rowles\Extensions\Twig\SessionExtension;
 
 /**
  * Class ViewServiceProvider
@@ -47,7 +47,7 @@ class ViewServiceProvider implements ServiceProviderInterface
      */
     private function viewPath(): string
     {
-        return __DIR__ . '/../../../resources/views';
+        return __DIR__ . '/../../resources/views';
     }
 
     /**
@@ -57,6 +57,6 @@ class ViewServiceProvider implements ServiceProviderInterface
      */
     private function cachePath(): string
     {
-        return __DIR__ . '/../../../public/cache';
+        return __DIR__ . '/../../public/cache';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Core\Handlers;
+namespace Rowles\Handlers;
 
 use Pimple\Container;
 

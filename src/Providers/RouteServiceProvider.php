@@ -1,25 +1,25 @@
 <?php
 
-namespace Rowles\Core\Providers;
+namespace Rowles\Providers;
 
+use Klein\Klein;
 use Pimple\Container;
-use Rowles\Core\Database;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Class DatabaseServiceProvider
+ * Class RouteServiceProvider
  */
-class DatabaseServiceProvider implements ServiceProviderInterface
+class RouteServiceProvider implements ServiceProviderInterface
 {
     /**
-     * Register database service provider.
+     * Register route service provider.
      *
      * @param Container $pimple
      * @return Container
      */
     public function register(Container $pimple): Container
     {
-        $pimple['db'] = new Database();
+        $pimple['router'] = new Klein();
 
         return $pimple;
     }

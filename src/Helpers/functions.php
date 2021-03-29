@@ -8,7 +8,7 @@ if (!function_exists('env')) {
      *
      * @return mixed
      */
-    function env($key)
+    function env(string $key)
     {
         $value = getenv($key);
 
@@ -43,7 +43,7 @@ if (!function_exists('toArray')) {
      *
      * @return array
      */
-    function toArray($object)
+    function toArray($object): array
     {
         if (!is_object($object) && !is_array($object)) {
             return $object;

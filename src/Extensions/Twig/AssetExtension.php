@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Core\Extensions\Twig;
+namespace Rowles\Extensions\Twig;
 
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;

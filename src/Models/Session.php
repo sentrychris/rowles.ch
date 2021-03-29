@@ -3,7 +3,6 @@
 namespace Rowles\Models;
 
 use Exception;
-use Rowles\Core\Models\Model;
 
 /**
  * Class Blog
