@@ -27,7 +27,7 @@ export const notification = function (options) {
             self.config = Object.assign({
                 'type': 'default',
                 'position': 'right',
-                'msg': 'This is my default message',
+                'message': 'This is my default message',
                 'opacity': 1,
                 'zindex': null,
                 'callback': null,
@@ -90,7 +90,7 @@ export const notification = function (options) {
             self.addClass(n, 'notification')
 
             let p = document.createElement('p')
-            p.innerHTML = self.config.msg
+            p.innerHTML = self.config.message
             n.appendChild(p)
 
             if (self.config.clickable) {

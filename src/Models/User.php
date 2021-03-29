@@ -63,7 +63,7 @@ class User extends Model
     /**
      * Save a new user.
      *
-     * @return User|false
+     * @return array|false
      */
     public function save()
     {
@@ -85,7 +85,7 @@ class User extends Model
             return false;
         }
 
-        return $this;
+        return $this->user;
     }
 
     /**
@@ -116,10 +116,10 @@ class User extends Model
     /**
      * Login a user.
      * @param array $data
-     * @return bool
+     * @return array
      * @throws Exception
      */
-    public function login(array $data = []): bool
+    public function login(array $data = []): array
     {
         $this->validate($data);
 
@@ -131,10 +131,18 @@ class User extends Model
         $user = $this->db->single();
 
         if ($user && password_verify($password, $user['password'])) {
-            return true;
+            $response = [
+                'status' => 'success',
+                'user' => $user
+            ];
+        } else {
+            $response = [
+                'status' => 'error',
+                'message' => 'Invalid username/password'
+            ];
         }
 
-        return false;
+        return $response;
     }
 
     /**

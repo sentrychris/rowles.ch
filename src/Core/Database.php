@@ -2,6 +2,7 @@
 
 namespace Rowles\Core;
 
+use Exception;
 use PDO;
 
 /**
@@ -9,10 +10,14 @@ use PDO;
  */
 class Database {
 
-    private $dbh;
+    /** @var PDO  */
+    private PDO $dbh;
+
+    /** @var mixed */
     private $stmt;
 
-    private $error;
+    /** @var string  */
+    private string $error;
 
     /**
      * Database constructor.
@@ -27,7 +32,7 @@ class Database {
 
         try {
             $this->dbh = new PDO($dsn, env('DB_USER'), env('DB_PASS'), $options);
-        }  catch (\Exception $e) {
+        }  catch (Exception $e) {
             $this->error = $e->getMessage();
             app('log')->error($this->error);
         }

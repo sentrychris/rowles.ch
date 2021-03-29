@@ -11,11 +11,13 @@
                     <h1>Blog.</h1>
                     <h3>Random bits and pieces.</h3>
                 </div>
-                <div class="mt-3 mt-sm-0">
-                    <a class="swal-button swal-button--confirm" href="/blog/create">
-                        New Blog Post
-                    </a>
-                </div>
+                {% if session.authenticated %}
+                    <div class="mt-3 mt-sm-0">
+                        <a class="swal-button swal-button--confirm" href="/blog/create">
+                            New Blog Post
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <hr/>

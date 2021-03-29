@@ -9,6 +9,7 @@ use Twig\Extension\DebugExtension;
 use Pimple\ServiceProviderInterface;
 use Rowles\Core\Extensions\Twig\AssetExtension;
 use Rowles\Core\Extensions\Twig\DotenvExtension;
+use Rowles\Core\Extensions\Twig\SessionExtension;
 
 /**
  * Class ViewServiceProvider
@@ -28,9 +29,13 @@ class ViewServiceProvider implements ServiceProviderInterface
             'cache' => env('APP_CACHE') ?? $this->cachePath(),
             'debug' => env('APP_DEBUG'),
         ]);
+        $pimple['view']->addGlobal('session', $_SESSION);
+        $pimple['view']->addGlobal('request', $_REQUEST);
+
         $pimple['view']->addExtension(new DebugExtension());
         $pimple['view']->addExtension(new DotenvExtension());
         $pimple['view']->addExtension(new AssetExtension());
+        $pimple['view']->addExtension(new SessionExtension());
 
         return $pimple;
     }

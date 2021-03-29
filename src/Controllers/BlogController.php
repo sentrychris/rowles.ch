@@ -2,10 +2,12 @@
 
 namespace Rowles\Controllers;
 
+use Exception;
 use Klein\Request;
 use Klein\Response;
 use Pimple\Container;
 use Rowles\Models\Blog;
+use Rowles\Models\Session;
 
 /**
  * Blog controller class.
@@ -22,6 +24,10 @@ class BlogController extends Controller
         'home'   => 'blog/home',
         'view'   => 'blog/view',
     ];
+    /**
+     * @var Session
+     */
+    private Session $session;
 
     /**
      * BlogController constructor.
@@ -31,6 +37,7 @@ class BlogController extends Controller
     public function __construct(Container $container)
     {
         $this->blog = new Blog($container);
+        $this->session = new Session($container);
 
         parent::__construct($container);
     }
@@ -66,10 +73,15 @@ class BlogController extends Controller
     /**
      * @param array $data
      * @return mixed
+     * @throws \Exception
      */
     public function create(array $data = [])
     {
-        return $this->setViewData($data)->render(static::$views[__FUNCTION__]);
+        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
+            return $this->setViewData($data)->render(static::$views[__FUNCTION__]);
+        } else {
+            throw new Exception('Unauthorized', 401);
+        }
     }
 
     /**
@@ -78,13 +90,18 @@ class BlogController extends Controller
      * @param int $id
      * @param array $data
      * @return mixed
+     * @throws Exception
      */
     public function edit(int $id, array $data = [])
     {
-        $data['post'] = $this->blog->getPost($id);
-        $data['title'] = $data['post']['title'];
+        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
+            $data['post'] = $this->blog->getPost($id);
+            $data['title'] = $data['post']['title'];
 
-        return $this->setViewData($data)->render(static::$views[__FUNCTION__]);
+            return $this->setViewData($data)->render(static::$views[__FUNCTION__]);
+        } else {
+            throw new Exception('Unauthorized', 401);
+        }
     }
 
     /**
@@ -93,26 +110,30 @@ class BlogController extends Controller
      * @param Request $request
      * @param Response $response
      * @return Response
+     * @throws Exception
      */
     public function submit(Request $request, Response $response): Response
     {
-        if ($request->param('id')) {
-            // TODO Detect when caller is ajax method
-            if ($this->blog->setAttributes($request->params())->update()) {
-                $return = ['msg' => 'Blog post successfully updated!', 'status' => 'success'];
+        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
+            if ($request->param('id')) {
+                // TODO Detect when caller is ajax method
+                if ($this->blog->setAttributes($request->params())->update()) {
+                    $return = ['message' => 'Blog post successfully updated!', 'status' => 'success'];
+                } else {
+                    $return = ['message' => 'Error! Could not update blog post.', 'status' => 'error'];
+                }
             } else {
-                $return = ['msg' => 'Error! Could not update blog post.', 'status' => 'error'];
+                if ($this->blog->setAttributes($request->params())->save()) {
+                    $return = ['message' => 'Blog post successfully created!', 'status' => 'success'];
+                } else {
+                    $return = ['message' => 'Error! Could not create blog post.', 'status' => 'error'];
+                }
             }
-        } else {
-            if ($this->blog->setAttributes($request->params())->save()) {
-                $return = ['msg' => 'Blog post successfully created!', 'status' => 'success'];
-            } else {
-                $return = ['msg' => 'Error! Could not create blog post.', 'status' => 'error'];
-            }
-        }
 
-        // TODO add proper redirects with flash session
-        return $response->json($return);
+            return $response->json($return);
+        } else {
+            throw new Exception('Unauthorized', 401);
+        }
     }
 
     /**
@@ -121,16 +142,22 @@ class BlogController extends Controller
      * @param Request $request
      * @param Response $response
      * @return Response $response
+     * @throws Exception
      */
     public function delete(Request $request, Response $response): Response
     {
-        $id = $request->param('id');
-        if ($this->blog->delete($id)) {
-            $return = ['msg' => 'Blog post successfully deleted!', 'status' => 'success'];
-        } else {
-            $return = ['msg' => 'Error! Could not delete blog post.', 'status' => 'error'];
-        }
+        if ($_SESSION['authenticated'] && $_SESSION['id'] === session_id()) {
 
-        return $response->json($return);
+            $id = $request->param('id');
+            if ($this->blog->delete($id)) {
+                $return = ['message' => 'Blog post successfully deleted!', 'status' => 'success'];
+            } else {
+                $return = ['message' => 'Error! Could not delete blog post.', 'status' => 'error'];
+            }
+
+            return $response->json($return);
+        } else {
+            throw new Exception('Unauthorized', 401);
+        }
     }
 }

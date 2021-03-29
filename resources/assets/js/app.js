@@ -30,11 +30,11 @@ const app = {
         sessionStorage.setItem("bannerRemoved", true);
     },
 
-    notify: (msg, type) => {
+    notify: (message, type, position = null) => {
         notification({
-            msg: msg,
+            message: message,
             type: type,
-            position: "center"
+            position: position ? position : 'center'
         })
     }
 };
@@ -73,7 +73,7 @@ const blog = {
                 $.post(postUrl, data, {
                 }).done((response) => {
                     localStorage.setItem("notify", notify);
-                    localStorage.setItem("message", response.msg);
+                    localStorage.setItem("message", response.message);
                     localStorage.setItem("type", response.status);
                     location.replace(responseUrl);
                 });
@@ -92,7 +92,7 @@ const blog = {
                 $.get('/blog/' + id + '/delete', {
                 }).done((response) => {
                     localStorage.setItem("notify", notify);
-                    localStorage.setItem("message", response.msg);
+                    localStorage.setItem("message", response.message);
                     localStorage.setItem("type", response.status);
                     location.replace('/blog');
                 });

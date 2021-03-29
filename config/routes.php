@@ -5,20 +5,14 @@
  ----------------------------------------*/
 
 use Pimple\Container;
-use Rowles\Controllers\AuthController;
-use Rowles\Controllers\BlogController;
-use Rowles\Controllers\PageController;
+use Rowles\Controllers\Auth\RegisterController;
+use Rowles\Controllers\{Auth\LoginController, BlogController, PageController};
 
-/**
- * @var Container $app
- * @var AuthController $auth
- * @var PageController $page
- * @var BlogController $blog
- */
-
+/** @var Container $app */
 
 /**
  * Static page routes.
+ * @var PageController $page
  */
 $app['router']->get('/experience', function () use ($page) {
     return $page->experience(['title' => 'Experience']);
@@ -28,23 +22,28 @@ $app['router']->get('/', function () use ($page) {
 });
 
 
-
 /**
  * Auth routes.
+ * @var RegisterController $register
+ * @var LoginController $login
  */
-$app['router']->with('/auth', function () use ($app, $auth) {
-    $app['router']->post('/register', function ($request, $response) use ($auth) {
-        return $auth->register($request, $response);
-    });
-
-    $app['router']->post('/login', function ($request, $response) use ($auth) {
-        return $auth->login($request, $response);
-    });
+$app['router']->get('/register', function () use ($register) {
+    return $register->view();
+});
+$app['router']->post('/register', function ($request, $response) use ($register) {
+    return $register->submit($request, $response);
+});
+$app['router']->get('/login', function () use ($login) {
+    return $login->view();
+});
+$app['router']->post('/login', function ($request, $response) use ($login) {
+    return $login->submit($request, $response);
 });
 
 
 /**
  * Blog routes.
+ * @var BlogController $blog
  */
 $app['router']->with('/blog', function () use ($app, $blog) {
     $app['router']->get('', function () use ($blog) {

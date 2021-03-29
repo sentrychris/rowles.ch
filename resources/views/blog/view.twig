@@ -11,12 +11,14 @@
                     <h1>{{ post.title }}</h1>
                     By {{ post.author }} on <span class="post-created-at">{{ post.created_at|date('jS F Y') }}</span>
                 </div>
-                <div class="mt-4">
-                    <a class="form-submit swal-button swal-button--action" href="/blog/{{ post.id }}/edit">Edit</a>&nbsp;&nbsp;
-                    <button class="swal-button swal-button--cancel" id="delete-post"
-                            onclick="blog.deletePost({{ post.id }}, true)">Delete
-                    </button>
-                </div>
+                {% if session.authenticated %}
+                    <div class="mt-4">
+                        <a class="form-submit swal-button swal-button--action" href="/blog/{{ post.id }}/edit">Edit</a>&nbsp;&nbsp;
+                        <button class="swal-button swal-button--cancel" id="delete-post"
+                                onclick="blog.deletePost({{ post.id }}, true)">Delete
+                        </button>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <article>
