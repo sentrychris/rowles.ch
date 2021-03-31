@@ -29,4 +29,21 @@
 {% endblock %}
 
 {% block additional_scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let description = '{{ post.title }}';
+            document.querySelector('meta[name="author"]')
+                .setAttribute('content', '{{ post.author }}');
+            document.querySelector('meta[name="description"]')
+                .setAttribute('content', description);
+            document.querySelector('meta[property="og:title"]')
+                .setAttribute('content', '{{ post.title }}');
+            document.querySelector('meta[property="og:description"]')
+                .setAttribute('content', description);
+            document.querySelector('meta[property="og:type"]')
+                .setAttribute('content', 'article');
+            document.querySelector('meta[property="og:url"]')
+                .setAttribute('content', '{{ url() }}');
+        })
+    </script>
 {% endblock %}

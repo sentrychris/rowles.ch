@@ -3,6 +3,7 @@
 namespace Rowles\Providers;
 
 use Pimple\Container;
+use Rowles\Extensions\Twig\UrlExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Extension\DebugExtension;
@@ -36,6 +37,7 @@ class ViewServiceProvider implements ServiceProviderInterface
         $pimple['view']->addExtension(new DotenvExtension());
         $pimple['view']->addExtension(new AssetExtension());
         $pimple['view']->addExtension(new SessionExtension());
+        $pimple['view']->addExtension(new UrlExtension());
 
         return $pimple;
     }
