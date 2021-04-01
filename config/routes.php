@@ -56,8 +56,8 @@ $app['router']->with('/blog', function () use ($app, $blog) {
     $app['router']->get('/create', function () use ($blog) {
         return $blog->create(['title' => 'New Post']);
     });
-    $app['router']->get('/[i:id]/view', function ($request) use ($blog) {
-        return $blog->view($request->id);
+    $app['router']->get('/[s:created]/[s:title]', function ($request) use ($blog) {
+        return $blog->view($request->created, $request->title);
     });
     $app['router']->get('/[i:id]/edit', function ($request) use ($blog) {
         return $blog->edit($request->id);

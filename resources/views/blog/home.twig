@@ -42,7 +42,7 @@
                                     {{ post.content | raw }}
                                 </div>
                                 <br/><br/>
-                                <a class="swal-button swal-button--default" href="/blog/{{ post.id }}/view">View</a>
+                                <a class="swal-button swal-button--default" href="/blog/{{ post.created_at|date('Y-m-d') }}/{{post.title|replace({' ':'-'})}}">View</a>
                             </div>
                         </section>
                     </div>

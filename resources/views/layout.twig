@@ -3,14 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="I'm Chris Rowles, a Software Developer based in Rushden, United Kingdom. Please get in touch for a free quote on your project, I would love to help!">
-    <meta name="author" content="Chris Rowles">
+    {% block meta_tags %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="I'm Chris Rowles, a Software Developer based in Rushden, United Kingdom. Please get in touch for a free quote on your project, I would love to help!">
+        <meta name="author" content="Chris Rowles">
 
-    <meta property="og:title" content="Chris Rowles | Software Developer" />
-    <meta property="og:description" content="I'm Chris Rowles, a Full Stack Developer based in Rushden, United Kingdom. Please get in touch for a free quote on your project, I would love to help!">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.rowles.ch" />
+        <meta property="og:title" content="Chris Rowles | Software Developer" />
+        <meta property="og:description" content="I'm Chris Rowles, a Full Stack Developer based in Rushden, United Kingdom. Please get in touch for a free quote on your project, I would love to help!">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.rowles.ch" />
+    {% endblock %}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset({file: 'main.css'}) }}">

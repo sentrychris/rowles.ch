@@ -144,13 +144,14 @@ class Blog extends Model
     /**
      * Get all posts.
      *
-     * @param int $id
+     * @param string $created
+     * @param string $title
      * @return mixed
      */
-    public function getPost(int $id)
+    public function getPost(string $created, string $title)
     {
-        $this->db->query('SELECT id, title, content, author, created_at FROM blog WHERE id = :id ORDER BY created_at DESC;');
-        $this->db->bind(':id', $id);
+        $this->db->query('SELECT id, title, content, author, created_at FROM blog WHERE title = :title;');
+        $this->db->bind(':title', $title);
 
         return $this->db->single();
     }

@@ -3,6 +3,17 @@
 {% block additional_styles %}
 {% endblock %}
 
+{% block meta_tags %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ post.title }}">
+    <meta name="author" content="{{  post.author }}">
+
+    <meta property="og:title" content="{{ post.title }} | {{  post.author }}" />
+    <meta property="og:description" content="{{  post.title }}">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ url() }}" />
+{% endblock %}
+
 {% block content %}
     <div id="content" class="container">
         <div id="page-header">
@@ -29,21 +40,4 @@
 {% endblock %}
 
 {% block additional_scripts %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let description = '{{ post.title }}';
-            document.querySelector('meta[name="author"]')
-                .setAttribute('content', '{{ post.author }}');
-            document.querySelector('meta[name="description"]')
-                .setAttribute('content', description);
-            document.querySelector('meta[property="og:title"]')
-                .setAttribute('content', '{{ post.title }}');
-            document.querySelector('meta[property="og:description"]')
-                .setAttribute('content', description);
-            document.querySelector('meta[property="og:type"]')
-                .setAttribute('content', 'article');
-            document.querySelector('meta[property="og:url"]')
-                .setAttribute('content', '{{ url() }}');
-        })
-    </script>
 {% endblock %}
