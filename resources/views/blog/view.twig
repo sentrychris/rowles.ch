@@ -5,11 +5,11 @@
 
 {% block meta_tags %}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{  post.content | slice(74,93) }}">
+    <meta name="description" content="{{ post.title }}">
     <meta name="author" content="{{  post.author }}">
 
-    <meta property="og:title" content="{{ post.title }} | By {{  post.author }}" />
-    <meta property="og:description" content="{{  post.content | slice(74,93) }}">
+    <meta property="og:title" content="{{ post.title }} | {{  post.author }}" />
+    <meta property="og:description" content="{{  post.title }}">
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url() }}" />
 {% endblock %}
