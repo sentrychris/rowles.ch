@@ -98,7 +98,7 @@ const blog = {
             })
 
             if (response.ok) {
-                setNotificationPersist(response, notify)
+                setNotificationPersist(await response.json(), notify)
                 location.replace('/blog')
             }
         } else {
