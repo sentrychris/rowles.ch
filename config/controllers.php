@@ -12,7 +12,7 @@ $controllers = [
     'auth' => new AuthController($app),
     'register' => new RegisterController($app),
     'login' => new LoginController($app),
-    'page' => new HomeController($app),
+    'home' => new HomeController($app),
     'blog' => new BlogController($app)
 ];
 
