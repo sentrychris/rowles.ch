@@ -25,12 +25,12 @@ $app['router']->get('/', function () use ($page) {
  * @var RegisterController $register
  * @var LoginController $login
  */
-$app['router']->get('/register', function () use ($register) {
-    return $register->view();
-});
-$app['router']->post('/register', function ($request, $response) use ($register) {
-    return $register->submit($request, $response);
-});
+//$app['router']->get('/register', function () use ($register) {
+//    return $register->view();
+//});
+//$app['router']->post('/register', function ($request, $response) use ($register) {
+//    return $register->submit($request, $response);
+//});
 $app['router']->get('/login', function () use ($login) {
     return $login->view();
 });
