@@ -1,3 +1,5 @@
+CREATE DATABASE rowles;
+
 USE rowles;
 
 CREATE TABLE users
