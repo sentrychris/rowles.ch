@@ -85,14 +85,16 @@ const blog = {
     },
 
     deletePost: async (id, notify) => {
-        const confirmation = await swal.fire({
+        const check = await swal.fire({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this post.",
             icon: "warning",
             showCancelButton: true
         })
 
-        if (confirmation.value) {
+        console.log(check)
+
+        if (check.isConfirmed) {
             const response = await fetch(`/blog/${id}/delete`, {
                 method: 'DELETE'
             })
