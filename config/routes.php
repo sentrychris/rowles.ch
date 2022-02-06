@@ -75,7 +75,7 @@ $router->with('/blog', function () use ($router, $blog) {
         return $blog->submit($request, $response);
     });
 
-    $router->get('/[i:id]/delete', function ($request, $response) use ($blog) {
+    $router->delete('/[i:id]/delete', function ($request, $response) use ($blog) {
         return $blog->delete($request, $response);
     });
 });

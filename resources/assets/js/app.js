@@ -11,23 +11,16 @@ dom.watch();
 
 import { notification } from './notification';
 
-const banner = $('.environ-banner');
 const app = {
     setActiveMenuItem: items => {
-        let path = location.pathname;
-        $.each(items, (index, item) => {
-            $(item).removeClass('active');
-            if ((path.includes($(item).attr('href'))
-                && $(item).attr('href') !== "/")
-                || ($(item).attr('href') === "/" && path === "/")) {
-                $(item).addClass('active')
+        const path = location.pathname;
+        for (const item of items) {
+            item.classList.remove('active')
+            const uri = item.href.split('/').pop()
+            if ((path.includes(uri) && uri !== '') || (uri === '' && path === '/')) {
+                item.classList.add('active')
             }
-        })
-    },
-
-    removeEnvironBanner: () => {
-        banner.remove();
-        sessionStorage.setItem("bannerRemoved", true);
+        }
     },
 
     notify: (message, type, position = null) => {
@@ -41,26 +34,30 @@ const app = {
 
 const blog = {
     describePost: id => {
-        let elem = $('.post-' + id + '> .post-content > .blog-post');
-        let html = elem.first().text().substring(0, 457) + '...';
-        elem.first().html(html);
+        const elem = document.querySelector('.post-' + id + '> .post-content > .blog-post')
+        if (elem) {
+            elem.textContent = elem.textContent.substring(0, 457) + '...'
+        }
     },
 
     submitPost: notify => {
-        let id = $('input[name="post-id"]').val();
-        let postUrl = '/blog/submit';
-        let responseUrl = '/blog';
+        let id = document.querySelector('input[name="post-id"]')
+        let postUrl = '/blog/submit'
+        let responseUrl = '/blog'
 
-        let data = {
-            author: $('input[name="post-author"]').val(),
-            title: $('input[name="post-title"]').val(),
-            content: $('#h').val()
+        const data = {
+            author: document.querySelector('input[name="post-author"]').value,
+            title: document.querySelector('input[name="post-title"]').value,
+            content: document.querySelector('#h').value
         };
 
-        if (typeof id === 'string' && id !== '') {
-            Object.assign(data, {id: id});
-            postUrl = '/blog/' + id + '/submit';
-            responseUrl += '/' + id + '/view';
+        if (id) {
+            id = id.value
+            if (id !== '') {
+                Object.assign(data, {id})
+                postUrl = '/blog/' + id + '/submit'
+                responseUrl += '/' + id + '/view'
+            }
         }
 
         swal.fire({
@@ -70,58 +67,68 @@ const blog = {
             showCancelButton: true
         }).then(response => {
             if (response.value) {
-                $.post(postUrl, data, {
-                }).done((response) => {
-                    localStorage.setItem("notify", notify);
-                    localStorage.setItem("message", response.message);
-                    localStorage.setItem("type", response.status);
-                    location.replace(responseUrl);
-                });
+                const body = new FormData()
+                for (const field in data) {
+                    body.append(field, data[field])
+                }
+
+                fetch(postUrl, { method: 'POST', body})
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        setNotificationPersist(data, notify)
+                        location.replace(responseUrl)
+                    })
             }
         });
     },
 
-    deletePost: (id, notify) => {
-        swal.fire({
+    deletePost: async (id, notify) => {
+        const confirmation = await swal.fire({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this post.",
             icon: "warning",
             showCancelButton: true
-        }).then(result => {
-            if (result.value) {
-                $.get('/blog/' + id + '/delete', {
-                }).done((response) => {
-                    localStorage.setItem("notify", notify);
-                    localStorage.setItem("message", response.message);
-                    localStorage.setItem("type", response.status);
-                    location.replace('/blog');
-                });
-            } else {
-                swal.fire({
-                    title: "Your post is safe.",
-                    icon: "info"
-                });
+        })
+
+        if (confirmation.value) {
+            const response = await fetch(`/blog/${id}/delete`, {
+                method: 'DELETE'
+            })
+
+            if (response.ok) {
+                setNotificationPersist(response, notify)
+                location.replace('/blog')
             }
-        });
+        } else {
+            await swal.fire({
+                title: "Your post is safe.",
+                icon: "info"
+            })
+        }
     }
 };
 
-if (sessionStorage.getItem("bannerRemoved")) {
-    app.removeEnvironBanner();
+function setNotificationPersist(data, notify) {
+    localStorage.setItem("notify", notify)
+    localStorage.setItem("message", data.message)
+    localStorage.setItem("type", data.status)
 }
 
-$(() => {
-    banner.click(() => {
-        app.removeEnvironBanner();
-    });
-
-    app.setActiveMenuItem($('.header .menu li a'));
+document.addEventListener('DOMContentLoaded', () => {
+    app.setActiveMenuItem(document.querySelectorAll('.header .menu li a'));
 
     if (localStorage.getItem('notify') && localStorage.getItem('message')) {
-        app.notify('<b>' + localStorage.getItem("message") + '</b>', localStorage.getItem('type'));
-        ['notify', 'message', 'type'].forEach(key => localStorage.removeItem(key));
+        const type = localStorage.getItem('type')
+        const message = '<b>' + localStorage.getItem("message") + '</b>'
+        app.notify(message, type);
+
+        for (const key of ['notify', 'message', 'type']) {
+            localStorage.removeItem(key)
+        }
     }
-});
+})
 
 export {
     app,
