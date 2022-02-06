@@ -27,7 +27,7 @@ class ViewServiceProvider implements ServiceProviderInterface
     {
         $loader = new FilesystemLoader($this->viewPath());
         $pimple['view'] = new Environment($loader, [
-            'cache' => env('APP_CACHE') ?? $this->cachePath(),
+            'cache' => env('APP_CACHE') ? $this->cachePath() : false,
             'debug' => env('APP_DEBUG'),
         ]);
         $pimple['view']->addGlobal('session', $_SESSION);
