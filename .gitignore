@@ -14,3 +14,4 @@
 /public/*.json
 !/logs/README.md
 !/public/cache/.gitkeep
+/docker/mysql
