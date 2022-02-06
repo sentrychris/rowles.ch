@@ -1,11 +1,12 @@
 version: "3.8"
 services:
     web:
-        image: chrisrowles/rowles-php7
+        image: chrisrowles/test
         container_name: rowles-web
         ports:
             - "80:80"
         volumes:
+            - ./docker/vhosts:/etc/apache2/sites-enabled
             - .:/var/www/html
         environment:
             - APP_ENV=development
