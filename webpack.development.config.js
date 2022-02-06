@@ -5,11 +5,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        compress: true,
-        port: 9000
-    },
     entry: [
         './resources/assets/js/main.js',
         './resources/assets/scss/app.scss'

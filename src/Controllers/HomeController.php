@@ -6,16 +6,16 @@ use Pimple\Container;
 use Rowles\Models\Blog;
 
 /**
- * Static page controller class.
+ * Page controller class.
  */
-class PageController extends Controller
+class HomeController extends Controller
 {
 
     /** @var Blog $blog */
     protected Blog $blog;
 
     /**
-     * BlogController constructor.
+     * HomeController constructor.
      *
      * @param Container $container
      */
@@ -37,16 +37,5 @@ class PageController extends Controller
         $data['posts'] = $this->blog->getAllPosts();
 
         return $this->setViewData($data)->render('home');
-    }
-
-    /**
-     * Render the experience page.
-     *
-     * @param array $data
-     * @return mixed
-     */
-    public function experience(array $data = [])
-    {
-        return $this->setViewData($data)->render('experience');
     }
 }

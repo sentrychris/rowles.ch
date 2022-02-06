@@ -6,17 +6,14 @@
 
 use Pimple\Container;
 use Rowles\Controllers\Auth\RegisterController;
-use Rowles\Controllers\{Auth\AuthController, Auth\LoginController, BlogController, PageController};
+use Rowles\Controllers\{Auth\AuthController, Auth\LoginController, BlogController, HomeController};
 
 /** @var Container $app */
 
 /**
  * Static page routes.
- * @var PageController $page
+ * @var HomeController $page
  */
-$app['router']->get('/experience', function () use ($page) {
-    return $page->experience(['title' => 'Experience']);
-});
 $app['router']->get('/', function () use ($page) {
     return $page->home();
 });
