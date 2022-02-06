@@ -14,8 +14,7 @@
         <meta property="og:url" content="https://www.rowles.ch" />
     {% endblock %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{ asset({file: 'main.css'}) }}">
+    <link rel="stylesheet" href="{{ asset({file: 'rowles.bundle.css'}) }}">
 
     <title>{{ title }}</title>
     {% block additional_styles %}{% endblock %}
@@ -58,7 +57,7 @@
 <div id="footer" class="mt-1">
     Made with <i class="fa fa-heart love"></i> by CR
 </div>
-<script type="text/javascript" src="{{ asset({file: 'main.js'}) }}"></script>
+<script type="text/javascript" src="{{ asset({file: 'rowles.bundle.js'}) }}"></script>
 {% block additional_scripts %}{% endblock %}
 </body>
 </html>

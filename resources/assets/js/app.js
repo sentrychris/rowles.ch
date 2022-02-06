@@ -9,7 +9,13 @@ window.swal = Swal
 library.add(faEnvelope, faHeart, faSignOutAlt, faPowerOff, faFacebookF, faGithub, faTwitter )
 dom.watch()
 
-const app = {
+function setNotificationPersist(data, notify) {
+    localStorage.setItem('notify', notify)
+    localStorage.setItem('message', data.message)
+    localStorage.setItem('type', data.status)
+}
+
+export const app = {
     setActiveMenuItem: items => {
         const path = location.pathname
         for (const item of items) {
@@ -30,7 +36,7 @@ const app = {
     }
 }
 
-const blog = {
+export const blog = {
     describePost: (id) => {
         const elem = document.querySelector('.post-' + id + '> .post-content > .blog-post')
         if (elem) {
@@ -109,12 +115,6 @@ const blog = {
     }
 }
 
-function setNotificationPersist(data, notify) {
-    localStorage.setItem('notify', notify)
-    localStorage.setItem('message', data.message)
-    localStorage.setItem('type', data.status)
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     app.setActiveMenuItem(document.querySelectorAll('.header .menu li a'))
 
@@ -128,8 +128,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 })
-
-export {
-    app,
-    blog
-}

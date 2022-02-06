@@ -48,9 +48,7 @@
                     </div>
                     <hr/>
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            blog.describePost({{ post.id }});
-                        });
+                        document.addEventListener('DOMContentLoaded', () =>  blog.describePost({{ post.id }}))
                     </script>
                 {% endfor %}
             {% else %}
