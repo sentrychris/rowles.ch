@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "up": "./bin/up",
+    "down": "./bin/down",
     "build": "webpack --config webpack.config.js"
   },
   "author": "",
