@@ -1,4 +1,10 @@
 version: "3.8"
+
+networks:
+    rowles:
+        external: true
+        name: ${COMPOSE_NETWORK_NAME}
+
 services:
     web:
         image: chrisrowles/test
@@ -12,10 +18,13 @@ services:
             - APP_ENV=development
             - APP_DEBUG=true
             - APP_CACHE=true
-            - DB_HOST=192.168.32.2
+            - DB_HOST=${COMPOSE_DB_IP}
             - DB_USER=rowles
             - DB_PASS=password
             - DB_NAME=rowles
+        networks:
+            rowles:
+                ipv4_address: ${COMPOSE_WEB_IP}
     database:
         image: mysql:8
         container_name: rowles-database
@@ -29,3 +38,6 @@ services:
             - MYSQL_PASSWORD=password
             - MYSQL_USER=rowles
             - MYSQL_DATABASE=rowles
+        networks:
+            rowles:
+                ipv4_address: ${COMPOSE_DB_IP}
