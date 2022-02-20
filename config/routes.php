@@ -16,9 +16,7 @@ $router = $app['router'];
  *
  * @var HomeController $home
  */
-$router->get('/', function () use ($home) {
-    return $home->home();
-});
+$router->get('/', fn() => $home->home());
 
 /**
  * Auth routes.
@@ -27,26 +25,11 @@ $router->get('/', function () use ($home) {
  * @var RegisterController $register
  * @var LoginController $login
  */
-if (env('APP_ENV') !== 'production') {
-    $router->get('/register', function () use ($register) {
-        return $register->view();
-    });
-    $router->post('/register', function ($request, $response) use ($register) {
-        return $register->submit($request, $response);
-    });
-}
-
-$router->get('/login', function () use ($login) {
-    return $login->view();
-});
-
-$router->post('/login', function ($request, $response) use ($login) {
-    return $login->submit($request, $response);
-});
-
-$router->get('/logout', function ($request, $response) use ($auth) {
-    return $auth->logout($request, $response);
-});
+$router->get('/register', fn() => $register->view());
+$router->post('/register', fn($request, $response) => $register->submit($request, $response));
+$router->get('/login', fn() => $login->view());
+$router->post('/login', fn($request, $response) => $login->submit($request, $response));
+$router->post('/logout', fn($request, $response) => $auth->logout($request, $response));
 
 
 /**
@@ -55,27 +38,10 @@ $router->get('/logout', function ($request, $response) use ($auth) {
  * @var BlogController $blog
  */
 $router->with('/blog', function () use ($router, $blog) {
-    $router->get('', function () use ($blog) {
-        return $blog->home(['title' => 'Blog']);
-    });
-
-    $router->get('/create', function () use ($blog) {
-        return $blog->create(['title' => 'New Post']);
-    });
-
-    $router->get('/[s:created]/[s:title]', function ($request) use ($blog) {
-        return $blog->view($request->created, $request->title);
-    });
-
-    $router->get('/[i:id]/edit', function ($request) use ($blog) {
-        return $blog->edit($request->id);
-    });
-
-    $router->post('/[i:id]?/submit', function ($request, $response) use ($blog) {
-        return $blog->submit($request, $response);
-    });
-
-    $router->delete('/[i:id]/delete', function ($request, $response) use ($blog) {
-        return $blog->delete($request, $response);
-    });
+    $router->get('', fn() => $blog->home(['title' => 'Blog']));
+    $router->get('/create', fn() => $blog->create(['title' => 'New Post']));
+    $router->get('/[i:id]', fn($request) => $blog->view($request->id));
+    $router->get('/[i:id]/edit', fn($request) =>$blog->edit($request->id));
+    $router->post('/[i:id]?/submit', fn($request, $response) => $blog->submit($request, $response));
+    $router->delete('/[i:id]/delete', fn($request, $response) => $blog->delete($request, $response));
 });

@@ -150,7 +150,7 @@ class User extends Model
     public function check(): bool
     {
         return isset($_SESSION['authenticated']) && $_SESSION['authenticated']
-            && isset($_SESSION['id']) && $_SESSION['id'] === session_id();
+            && isset($_SESSION['name']) && $_SESSION['name'] === session_id();
     }
 
     /**

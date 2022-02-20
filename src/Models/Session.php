@@ -9,8 +9,11 @@ use Exception;
  */
 class Session extends Model
 {
+    /** @var int $id  */
+    protected int $id;
+
     /** @var string  */
-    protected string $id;
+    protected string $name;
 
     /** @var string  */
     protected string $user_id;
@@ -21,7 +24,13 @@ class Session extends Model
     /** @var string  */
     protected string $updated_at;
 
+    /** @var array  */
     protected array $session;
+
+    /** @var array $validate name of attributes to validate for requests */
+    private array $validate = [
+        'name', 'user_id'
+    ];
 
     /**
      * Set session attributes.
@@ -32,10 +41,10 @@ class Session extends Model
     public function setAttributes(array $data): Session
     {
         try {
-            $this->setId(session_id());
+            $this->setName(session_id());
             $this->setUserId($data['user_id']);
 
-            $this->session = ['id' => $this->id, 'user_id' => $this->user_id];
+            $this->session = ['name' => $this->name, 'user_id' => $this->user_id];
         } catch (Exception $e) {
             $this->log->error($e->getMessage());
         }
@@ -47,29 +56,25 @@ class Session extends Model
      * Create a new session.
      *
      * @param array $user
-     * @return Session|false
+     * @return Session
+     * @throws Exception
      */
-    public function create(array $user)
+    public function create(array $user): self
     {
-        try {
-            $this->validate($this->session);
+        $this->validate($this->session);
 
-            $this->db->query(
-                "REPLACE INTO sessions (id, user_id, created_at, updated_at) VALUES (:id, :user_id, NOW(), NOW())"
-            );
+        $this->db->query(
+            "REPLACE INTO sessions (name, user_id, created_at, updated_at) VALUES (:name, :user_id, NOW(), NOW())"
+        );
 
-            $this->db->bind(':id', $this->id);
-            $this->db->bind(':user_id', $this->user_id);
+        $this->db->bind(':name', $this->name);
+        $this->db->bind(':user_id', $this->user_id);
 
-            $this->db->execute();
+        $this->db->execute();
 
-            $_SESSION['authenticated'] = true;
-            $_SESSION['id'] = $this->id;
-            $_SESSION['user'] = $user;
-        } catch (Exception $e) {
-            $this->log->error($e->getMessage());
-            return false;
-        }
+        $_SESSION['authenticated'] = true;
+        $_SESSION['name'] = $this->name;
+        $_SESSION['user'] = $user;
 
         return $this;
     }
@@ -82,12 +87,12 @@ class Session extends Model
     public function delete(): bool
     {
         try {
-            $id = $_SESSION['id'];
+            $name = $_SESSION['name'];
             $user_id = $_SESSION['user']['id'];
 
-            $this->db->query("DELETE FROM sessions WHERE id = :id AND user_id = :user_id");
+            $this->db->query("DELETE FROM sessions WHERE name = :name AND user_id = :user_id");
 
-            $this->db->bind(':id', $id);
+            $this->db->bind(':id', $name);
             $this->db->bind(':user_id', $user_id);
 
             $this->db->execute();
@@ -111,13 +116,21 @@ class Session extends Model
     public function validate(array $data): bool
     {
         if (!empty($data)) {
-            if (isset($data['id']) && isset($data['user_id'])) {
+            $missing = [];
+            foreach($this->validate as $attribute) {
+                if (!isset($data[$attribute])) {
+                    $missing[$attribute] = $attribute;
+                }
+            }
+
+            if (empty($missing)) {
                 return true;
             } else {
-                throw new Exception('Not all required parameters are set.');
+                throw new Exception('The following parameters are missing from the request: '
+                    . implode(', ', $missing));
             }
         } else {
-            throw new Exception('No parameters are set.');
+            throw new Exception('No parameters detected.');
         }
     }
 
@@ -130,12 +143,21 @@ class Session extends Model
     }
 
     /**
-     * @param string $id
+     * @param string $name
      * @return mixed
      */
-    public function setId(string $id): void
+    public function getName(string $name): void
     {
-        $this->id = $id;
+        $this->name = $name;
+    }
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     /**

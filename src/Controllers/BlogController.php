@@ -53,14 +53,13 @@ class BlogController extends AuthController
     /**
      * View a blog post.
      *
-     * @param string $created
-     * @param string $title
+     * @param int $id
      * @param array $data
      * @return mixed
      */
-    public function view(string $created, string $title, array $data = [])
+    public function view(int $id, array $data = [])
     {
-        $data['post'] = $this->blog->getPost($created, str_replace("-", " ", $title));
+        $data['post'] = $this->blog->getPost($id);
         $data['title'] = $data['post']['title'];
 
         return $this->setViewData($data)->render(static::$views[__FUNCTION__]);
