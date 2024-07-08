@@ -18,7 +18,7 @@ $dotenv->load();
 $app = new Pimple\Container();
 
 $app->register(new Rowles\Providers\LogServiceProvider());
-$app->register(new Rowles\Providers\DatabaseServiceProvider());
+// $app->register(new Rowles\Providers\DatabaseServiceProvider());
 $app->register(new Rowles\Providers\RouteServiceProvider());
 $app->register(new Rowles\Providers\ViewServiceProvider());
 

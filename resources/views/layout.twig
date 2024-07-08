@@ -19,8 +19,8 @@
     <title>{{ title }}</title>
     {% block additional_styles %}{% endblock %}
 </head>
-<body>
-<nav class="navbar navbar-expand-lg border-bottom">
+<body class="montserrat">
+<nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand me-4" href="/"><div id="logo"> CR </div></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navbar"
@@ -29,8 +29,8 @@
         </button>
         <div class="collapse navbar-collapse" id="site-navbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                {# <li class="nav-item"><a class="nav-link" href="/">Home</a></li> #}
+                {# <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li> #}
             </ul>
 
             <ul class="navbar-nav ms-auto gap-2 d-none d-md-flex">
@@ -46,7 +46,7 @@
     </div>
 </nav>
 
-<main id="content-wrapper">
+<main id="content-wrapper" data-scroll>
     {% if env('APP_ENV') is not same as('production') %}
         <div class="environ-banner">
             <div class={{ env("APP_ENV") }}>
@@ -54,9 +54,8 @@
             </div>
         </div>
     {% endif %}
-    {% block content %}
 
-    {% endblock %}
+    {% block content %}{% endblock %}
 </main>
 
 <div id="footer" class="mt-1">

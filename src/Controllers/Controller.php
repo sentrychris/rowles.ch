@@ -32,7 +32,7 @@ abstract class Controller
     public function __construct(Container $container)
     {
         $this->log = $container['log'];
-        $this->db = $container['db'];
+        // $this->db = $container['db'];
         $this->router = $container['router'];
         $this->view = $container['view'];
 
