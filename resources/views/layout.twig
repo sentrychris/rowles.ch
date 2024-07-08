@@ -20,26 +20,31 @@
     {% block additional_styles %}{% endblock %}
 </head>
 <body>
-<div class="header">
-    <div class="container clearfix">
-        <a href="/"><div id="logo"> CR </div></a>
+<nav class="navbar navbar-expand-lg border-bottom">
+    <div class="container">
+        <a class="navbar-brand me-4" href="/"><div id="logo"> CR </div></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navbar"
+            aria-controls="site-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site-navbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+            </ul>
 
-        <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-        </ul>
-
-        <ul class="contact d-none d-sm-flex">
-            <li><a href="https://www.twitter.com/_raekw0n"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/raekw0n"><i class="fab fa-github"></i></a></li>
-            <li><a href="mailto:me@rowles.ch"><i class="fa fa-envelope"></i></a></li>
-            {% if session.authenticated %}
-                <li><a href="/logout"><i class="fa fa-power-off text-danger"></i></a></li>
-            {% endif %}
-        </ul>
+            <ul class="navbar-nav ms-auto gap-2 d-none d-md-flex">
+                <li class="nav-item"><a class="nav-link" href="https://www.twitter.com/_raekw0n"><i class="fab fa-twitter fa-2xl"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/raekw0n"><i class="fab fa-github fa-2xl"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/chris-rowles/"><i class="fab fa-linkedin fa-2xl"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="mailto:crowles.sdx@gmail.com"><i class="fa fa-envelope fa-2xl"></i></a></li>
+                {% if session.authenticated %}
+                    <li class="nav-item ms-3"><a class="nav-link" href="/logout"><i class="fa fa-power-off text-danger fa-2xl"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-</div>
-<div class="clear-float"></div>
+</nav>
 
 <main id="content-wrapper">
     {% if env('APP_ENV') is not same as('production') %}

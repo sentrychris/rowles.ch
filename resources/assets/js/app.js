@@ -2,11 +2,11 @@ import 'trumbowyg'
 import Swal from 'sweetalert2'
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 import { faEnvelope, faHeart, faSignOutAlt, faPowerOff } from '@fortawesome/free-solid-svg-icons'
-import { faFacebookF, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { notification } from './notification'
 
 window.swal = Swal
-library.add(faEnvelope, faHeart, faSignOutAlt, faPowerOff, faFacebookF, faGithub, faTwitter )
+library.add(faEnvelope, faHeart, faSignOutAlt, faPowerOff, faFacebookF, faGithub, faLinkedin, faTwitter )
 dom.watch()
 
 function setNotificationPersist(data, notify) {
