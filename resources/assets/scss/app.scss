@@ -1,6 +1,7 @@
 @import "fonts";
 
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import '~bootstrap/scss/bootstrap';
 @import "~trumbowyg/dist/ui/trumbowyg.css";
 
 @import "notification";
