@@ -17,7 +17,7 @@
         ]
     },
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "twig/twig": "^v3.1.0",
         "klein/klein": "^v2.1.2",
         "pimple/pimple": "^v3.5.0",
