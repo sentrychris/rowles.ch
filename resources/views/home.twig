@@ -14,6 +14,13 @@
 #blog-posts {
     opacity: 0;
 }
+
+#bg-model {
+    opacity: 0;
+    position: fixed;
+    bottom: 0;
+    right: 15%;
+}
 </style>
 {% endblock %}
 
@@ -123,7 +130,7 @@
             </div>
         </div>
     </div>
-    <img src="{{ asset({file: 'model3.png'}) }}" style="position: fixed;bottom: 0;right: 15%;opacity: 0.1"></img>
+    <img src="{{ asset({file: 'model3.png'}) }}" id="bg-model"></img>
 {% endblock %}
 
 {% block additional_scripts %}
@@ -149,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .to("#contact-details", {opacity: 1, duration: 0.3}, '-=0.3') // Undecided on timing...
         .to("#code-projects", {opacity: 1, duration: 0.3})
         .to("#blog-posts", {opacity: 1, duration: 0.3}, '-=0.3') // // Undecided on timing...
+        .to("#bg-model", {opacity: 0.15, duration: 0.3, stagger: 0.03}, '-=0.3')
 })
 </script>
 {% endblock %}
