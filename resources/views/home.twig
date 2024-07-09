@@ -1,16 +1,22 @@
 {% extends "layout.twig" %}
 
 {% block additional_styles %}
+<style>
+.photo {
+    filter: drop-shadow(8px 8px 8px #cccccc);
+    transition: transform 0.5s ease;
+}
+</style>
 {% endblock %}
 
 {% block content %}
     <div id="content" class="container">
         <div id="splash">
-            <div class="d-flex align-items-center gap-3 gap-md-5">
-                <img src="{{ asset({file: 'model4.jpg'}) }}" class="img rounded-circle shadow photo">
+            <div class="d-flex align-items-center gap-3 gap-md-5 img-wrapper">
+                <img src="{{ asset({file: 'model4.jpg'}) }}" class="img rounded-circle photo distort">
                 <div>
-                    <h1 class="ls-2 text-uppercase mb-2">Chris Rowles</h1>
-                    <h3 class="ls-2">Full Stack Developer based in the United Kingdom.</h3>
+                    <h1 class="main_heading ls-2 text-uppercase mb-2">Chris Rowles</h1>
+                    <h3 class="main_subheading ls-2">Full Stack Developer based in the United Kingdom.</h3>
                 </div>
             </div>
         </div>
@@ -112,4 +118,21 @@
 {% endblock %}
 
 {% block additional_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Target the elements you want to animate
+    const h1 = document.querySelector('.main_heading');
+    const h3 = document.querySelector('.main_subheading');
+
+    // Wrap each character in a <span> using SplitText
+    const splitH1 = new SplitText(h1, { type: 'chars' });
+    const splitH3 = new SplitText(h3, { type: 'chars' });
+
+    // Animation using GSAP
+    gsap.timeline({ defaults: { duration: 0.5, ease: 'circ.in' } })
+        .from(splitH1.chars, { duration: 0.5, opacity: 0, stagger: 0.02 }, '+=0.5')
+        .from(splitH3.chars, { duration: 0.5, opacity: 0, stagger: 0.01 }, '-=0.1');
+
+})
+</script>
 {% endblock %}
