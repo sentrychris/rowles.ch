@@ -51,14 +51,13 @@ function createBodies(app, yy, side) {
         side + (bh - y * side)/2 + y * side,
         side, side
       );
-      //body.$color_ = `hsla(${240-20+Math.random()*80}deg,50%,50%,1)`;
       app.bodies.push(body);
     }
   }
   Matter.World.add(app.engine.world, app.bodies);
   
   // walls
-  const WT = 100; // wall thickness
+  const WT = 1; // wall thickness
   Matter.World.add(app.engine.world, [
     Matter.Bodies.rectangle(bw/2, -WT/2, 1e5, WT, {isStatic:true}),
     Matter.Bodies.rectangle(bw/2, bh + WT/2, 1e5, WT, {isStatic:true})
@@ -99,18 +98,7 @@ function registerEvents(app) {
     }
 
     app.drawFns[app.drawFnIndex](app.ctx, app);
-  });
-  
-  const center = Matter.Vector.create(app.buffer.width * 0.5, app.buffer.height * 0.5);
-  document.body.addEventListener(`mousemove`, e => {
-    const pos = Matter.Vector.create(
-      e.clientX / innerWidth * app.buffer.width,
-      e.clientY / innerHeight * app.buffer.height
-    );
-    app.vents[0].position.x = pos.x;
-    app.vents[0].position.y = pos.y;
-    app.vents[0].force.x = app.baseSpeed * -0.1;
-  });
+  });  
 }
 
 function start(app) {

@@ -24,23 +24,13 @@
     {% block additional_styles %}{% endblock %}
 </head>
 <body class="montserrat">
-{{ include('loader.twig') }}
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg d-none d-md-flex">
     <div class="container">
         <a class="navbar-brand me-4" href="/">
             <div id="logo" class="bg-dark text-white"> CR </div>
         </a>
-        {# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navbar"
-            aria-controls="site-navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> #}
         <div class="collapse navbar-collapse" id="site-navbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
-                {# <li class="nav-item"><a class="nav-link" href="/">Home</a></li> #}
-                {# <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li> #}
-            </ul>
-
-            <ul class="navbar-nav ms-auto gap-2 d-none d-md-flex">
+            <ul class="navbar-nav ms-auto gap-2">
                 <li class="nav-item"><a class="nav-link" href="https://github.com/sentrychris"><i class="fab fa-github fa-2xl"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/chris-rowles/"><i class="fab fa-linkedin fa-2xl"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="mailto:crowles.sdx@gmail.com"><i class="fa fa-envelope fa-2xl"></i></a></li>
@@ -53,14 +43,6 @@
 </nav>
 
 <main id="content-wrapper" data-scroll>
-    {% if env('APP_ENV') is not same as('production') %}
-        <div class="environ-banner">
-            <div class={{ env("APP_ENV") }}>
-                <p>{{ env("APP_ENV") }}</p>
-            </div>
-        </div>
-    {% endif %}
-
     {% block content %}{% endblock %}
 </main>
 
