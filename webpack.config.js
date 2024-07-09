@@ -12,6 +12,11 @@ module.exports = {
         filename: 'js/rowles.bundle.min.js',
         path: path.resolve(__dirname, 'public'),
     },
+    watch: true,
+    watchOptions: {
+        ignored: /node_modules/,
+        // other options
+    },
     optimization: {
         minimizer: [new TerserPlugin({
             extractComments: true,
