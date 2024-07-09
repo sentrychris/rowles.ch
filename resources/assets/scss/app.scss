@@ -65,3 +65,45 @@
     right: 15%;
     z-index: -1;
 }
+
+// Matter
+canvas {
+    position:absolute; top:0; left:0;
+    width:100%;
+    height:100%;
+}
+#elwrap {
+    position: absolute;
+    width: 100vw;
+    height: 41%;
+    overflow: hidden;
+    z-index: -1;
+}
+#elcanvas {
+    z-index:1;
+    display:block;
+}
+
+@include media-breakpoint-up(md) {
+    #elwrap {
+        height: 51%;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    #elwrap {
+        height: 67%;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    #elwrap {
+        height: 67%;
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    #elwrap {
+        height: 52%;
+    }
+}
