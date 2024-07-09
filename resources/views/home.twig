@@ -3,8 +3,7 @@
 {% block additional_styles %}
 <style>
 .photo {
-    filter: drop-shadow(8px 8px 8px #cccccc);
-    transition: transform 0.5s ease;
+    filter: blur(10px) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
 }
 </style>
 {% endblock %}
@@ -129,10 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const splitH3 = new SplitText(h3, { type: 'chars' });
 
     // Animation using GSAP
-    gsap.timeline({ defaults: { duration: 0.5, ease: 'circ.in' } })
-        .from(splitH1.chars, { duration: 0.5, opacity: 0, stagger: 0.02 }, '+=0.5')
-        .from(splitH3.chars, { duration: 0.5, opacity: 0, stagger: 0.01 }, '-=0.1');
-
+    gsap.timeline({ defaults: { duration: 0.3, ease: 'circ.in' } })
+        .to(".photo", 
+            {filter: "blur(0px) drop-shadow(8px 8px 8px #cccccc)", duration: 0.3}
+        )
+        .from(splitH1.chars, { opacity: 0, stagger: 0.02 }, '-=0.0')
+        .from(splitH3.chars, { opacity: 0, stagger: 0.01 }, '-=0.0');
 })
 </script>
 {% endblock %}
