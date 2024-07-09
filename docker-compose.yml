@@ -14,29 +14,8 @@ services:
             - APP_NAME=${APP_NAME}
             - APP_DEBUG=${APP_DEBUG}
             - APP_CACHE=${APP_CACHE}
-            - DB_HOST=${DB_HOST}
-            - DB_USER=${DB_USER}
-            - DB_PASS=${DB_PASS}
-            - DB_NAME=${DB_NAME}
         networks:
           - rowles
-        depends_on:
-          - database
-    database:
-        image: mysql:8
-        container_name: rowles-database
-        ports:
-            - ${DATABASE_LOCAL_PORT}:${DATABASE_CONTAINER_PORT}
-        volumes:
-            - ./migrations:/root/migrations
-            - ./docker/mysql:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-            - MYSQL_PASSWORD=${DB_PASS}
-            - MYSQL_USER=${DB_USER}
-            - MYSQL_DATABASE=${DB_NAME}
-        networks:
-            - rowles
 
 networks:
   rowles:

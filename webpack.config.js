@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
@@ -10,23 +9,18 @@ module.exports = {
         './resources/assets/scss/app.scss'
     ],
     output: {
-        filename: 'js/rowles.bundle.js',
+        filename: 'js/rowles.bundle.min.js',
         path: path.resolve(__dirname, 'public'),
     },
     optimization: {
         minimizer: [new TerserPlugin({
-            extractComments: false,
+            extractComments: true,
         })],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/rowles.bundle.css',
+            filename: 'css/rowles.bundle.min.css',
             chunkFilename: 'css/[id].css'
-        }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            Popper: ['popper.js', 'default']
         })
     ],
     module:  {
