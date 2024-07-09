@@ -22,21 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const h3 = document.querySelector('.main_subheading');
     const splitH1 = new SplitText(h1, { type: 'chars' });
     const splitH3 = new SplitText(h3, { type: 'chars' });
+    
+    // Animation using GSAP
+    gsap.timeline({ defaults: { duration: 0.5, ease: 'power2.out' } })
+        .to('.photo', { opacity: 1, duration: 0.6 })
+        .to('.photo', { filter: "blur(0px) drop-shadow(8px 8px 8px #cccccc)", duration: 0.6 }, '-=0.4')
 
-  // Animation using GSAP
-    gsap.timeline({ defaults: { duration: 0.3, ease: 'circ.in' } })
-        .to('.photo', {opacity: 1})
-        .to('.photo',
-            {filter: "blur(0px) drop-shadow(8px 8px 8px #cccccc)", duration: 0.4},
-            '-=0.15'
-        )
-        .from(splitH1.chars, { opacity: 0, stagger: 0.02 }, '-=0.4')
-        .from(splitH3.chars, { opacity: 0, stagger: 0.01 }, '-=0.2')
-        .to("#about", {opacity: 1, duration: 0.3}, '-=0.3')
-        .to("#current-job", {opacity: 1, duration: 0.3}, '-=0.1')
-        .to("#previous-jobs", {opacity: 1, duration: 0.3})
-        .to("#contact-details", {opacity: 1, duration: 0.3}, '-=0.3') // Undecided on timing...
-        .to("#code-projects", {opacity: 1, duration: 0.3})
-        .to("#blog-posts", {opacity: 1, duration: 0.3}, '-=0.3') // // Undecided on timing...
-        .to("#bg-model", {opacity: 0.1, duration: 0.3, stagger: 0.03}, '-=0.9');
+        .from(splitH1.chars, { opacity: 0, stagger: 0.02 }, '-=0.5')
+        .from(splitH3.chars, { opacity: 0, stagger: 0.01 }, '-=0.3')
+        
+        .to("#about", { opacity: 1, duration: 0.4 }, '-=0.3')
+        .to("#current-job", { opacity: 1, duration: 0.4 }, '-=0.2')
+        .to("#previous-jobs", { opacity: 1, duration: 0.4 })
+        .to("#contact-details", { opacity: 1, duration: 0.4 }, '-=0.3')
+        .to("#code-projects", { opacity: 1, duration: 0.4 })
+        .to("#blog-posts", { opacity: 1, duration: 0.4 }, '-=0.3')
+        .to("#bg-model", { opacity: 0.1, duration: 0.4, stagger: 0.05 }, '-=1.0');    
 });
