@@ -84,6 +84,12 @@ canvas {
     display:block;
 }
 
+@media (max-width: 376px) {
+    #elwrap {
+        height: 52%;
+    }
+}
+
 @include media-breakpoint-up(md) {
     #elwrap {
         height: 51%;
