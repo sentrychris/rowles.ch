@@ -26,7 +26,9 @@
 <body class="montserrat">
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand me-4" href="/"><div id="logo"> CR </div></a>
+        <a class="navbar-brand me-4" href="/">
+            <div id="logo" class="bg-dark text-white"> CR </div>
+        </a>
         {# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#site-navbar"
             aria-controls="site-navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,9 +63,9 @@
     {% block content %}{% endblock %}
 </main>
 
-<div id="footer" class="mt-1">
+<footer id="footer" class="mt-1 bg-dark border-top border-dark text-white">
     Made with <i class="fa fa-heart love"></i> by CR
-</div>
+</footer>
 <script type="text/javascript" src="{{ asset({file: 'rowles.bundle.js'}) }}"></script>
 {% block additional_scripts %}{% endblock %}
 </body>

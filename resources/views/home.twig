@@ -3,7 +3,16 @@
 {% block additional_styles %}
 <style>
 .photo {
+    opacity: 0;
     filter: blur(10px) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+#about,
+#current-job,
+#previous-jobs,
+#contact-details,
+#code-projects,
+#blog-posts {
+    opacity: 0;
 }
 </style>
 {% endblock %}
@@ -20,7 +29,7 @@
             </div>
         </div>
 
-        <div class="blurb">
+        <div class="blurb" id="about">
             <div class="blurb-header">About</div>
             <div class="blurb-content" id="main_about">
                 Hello! I’m Chris, a dedicated and detail-oriented web developer based in Milton Keynes.
@@ -31,7 +40,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="blurb">
+                <div class="blurb" id="current-job">
                     <div class="blurb-header">Current</div>
                     <div class="blurb-content">
                         <h4 class="somewhat-big text-muted" id="current_employer">
@@ -46,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-6 order-1">
-                <div class="blurb">
+                <div class="blurb" id="previous-jobs">
                     <div class="blurb-header">Previous</div>
                     <div class="blurb-content">
                         <h4 class="somewhat-big text-muted">Go Deploy Labs <span class="sub-header">(2020 - 2022)</span></h4>
@@ -64,7 +73,7 @@
             </div>
             <!-- TODO switch these around on mobile -->
             <div class="col-12 col-md-6 order-2 order-md-12">
-                <div class="blurb">
+                <div class="blurb" id="contact-details">
                     <div class="blurb-header">Contact</div>
                     <div class="blurb-content">
                         <h4 class="somewhat-big text-muted">Email</h4>
@@ -84,7 +93,7 @@
 
         <div class="row">
             <div class="col-12 col-md-6">
-                <div class="blurb">
+                <div class="blurb" id="code-projects">
                     <div class="blurb-header">Open Source</div>
                     <div class="blurb-content">
                         <ul class="list">
@@ -97,7 +106,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <div class="blurb">
+                <div class="blurb position-relative" id="blog-posts">
                     <div class="blurb-header">Latest Posts</div>
                     <div class="blurb-content">
                         <ul class="list">
@@ -114,26 +123,32 @@
             </div>
         </div>
     </div>
+    <img src="{{ asset({file: 'model3.png'}) }}" style="position: fixed;bottom: 0;right: 15%;opacity: 0.1"></img>
 {% endblock %}
 
 {% block additional_scripts %}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Target the elements you want to animate
     const h1 = document.querySelector('.main_heading');
     const h3 = document.querySelector('.main_subheading');
-
-    // Wrap each character in a <span> using SplitText
     const splitH1 = new SplitText(h1, { type: 'chars' });
     const splitH3 = new SplitText(h3, { type: 'chars' });
 
     // Animation using GSAP
     gsap.timeline({ defaults: { duration: 0.3, ease: 'circ.in' } })
-        .to(".photo", 
-            {filter: "blur(0px) drop-shadow(8px 8px 8px #cccccc)", duration: 0.3}
+        .to('.photo', {opacity: 1})
+        .to('.photo',
+            {filter: "blur(0px) drop-shadow(8px 8px 8px #cccccc)", duration: 0.4},
+            '-=0.15'
         )
-        .from(splitH1.chars, { opacity: 0, stagger: 0.02 }, '-=0.0')
-        .from(splitH3.chars, { opacity: 0, stagger: 0.01 }, '-=0.0');
+        .from(splitH1.chars, { opacity: 0, stagger: 0.02 }, '-=0.4')
+        .from(splitH3.chars, { opacity: 0, stagger: 0.01 }, '-=0.2')
+        .to("#about", {opacity: 1, duration: 0.3}, '-=0.3')
+        .to("#current-job", {opacity: 1, duration: 0.3}, '-=0.1')
+        .to("#previous-jobs", {opacity: 1, duration: 0.3})
+        .to("#contact-details", {opacity: 1, duration: 0.3}, '-=0.3') // Undecided on timing...
+        .to("#code-projects", {opacity: 1, duration: 0.3})
+        .to("#blog-posts", {opacity: 1, duration: 0.3}, '-=0.3') // // Undecided on timing...
 })
 </script>
 {% endblock %}
