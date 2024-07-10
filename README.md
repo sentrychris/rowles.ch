@@ -9,18 +9,18 @@ A new application instance is created for every HTTP request, this means that fo
 Application services are registered through [Service Providers](#), which provide concrete implementations mapped to interfaces or string identifiers. For example, [LogServiceProvider](#) binds a [PSR-3 compliant](https://www.php-fig.org/psr/psr-3/) logger instance to our service container.
 
 ```php
-public function register(Container $pimple)
+public function register(Container $container)
 {
-    $pimple[LoggerInterface::class] = new Logger('app');
+    $container[LoggerInterface::class] = new Logger('app');
 
     try {
-        $pimple[LoggerInterface::class]
+        $container[LoggerInterface::class]
           ->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
     } catch (\Exception $e) {
         return $e->getMessage();
     }
 
-    return $pimple;
+    return $container;
 }
 ```
 
@@ -72,9 +72,9 @@ class CustomLogger implements LoggerInterface {
 ```
 LogServiceProvider.php:
 ```php
-public function register(Container $pimple)
+public function register(Container $container)
 {
-    $pimple[LoggerInterface::class] = new CustomLogger(); // not Monolog\Logger();
-    return $pimple;
+    $container[LoggerInterface::class] = new CustomLogger(); // not Monolog\Logger();
+    return $container;
 }
 ```
