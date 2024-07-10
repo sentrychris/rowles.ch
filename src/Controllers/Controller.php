@@ -25,10 +25,10 @@ abstract class Controller
      *
      * @param Container $container
      */
-    public function __construct()
+    public function __construct(LoggerInterface $logger, ViewEngineInterface $view)
     {
-        $this->log = app(LoggerInterface::class);
-        $this->view = app(ViewEngineInterface::class);
+        $this->log = $logger;
+        $this->view = $view;
 
         $this->data['title'] = env("APP_NAME");
     }
