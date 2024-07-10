@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Versyx\Controller;
+
 /**
  * Page controller class.
  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Versyx;
 
 use Psr\Log\LoggerInterface;
 use App\Versyx\View\ViewEngineInterface;
