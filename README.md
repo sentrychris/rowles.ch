@@ -60,7 +60,7 @@ public function __construct(LoggerInterface $logger, ViewEngineInterface $view)
 
 To see how the controllers are automatically resolved in the container, see the logic [here](./config/controllers.php).
 
-It is recommended to bind services to interfaces in the container as this allows you to swap concrete implementations, which is useful for mocking, testing etc.
+It is recommended to bind to interfaces in the container as this allows you to swap service implementations, which is useful for mocking, testing etc.
 
 For example, you can swap the logger instance to anything else as long as it implements the PSR-3 `LoggerInterface`. To do this, you just modify the service provider:
 
