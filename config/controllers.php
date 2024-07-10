@@ -30,21 +30,23 @@ foreach ($controllers as $controller) {
 
     // Check if class can be instantiated (i.e. not abstract)
     if ($reflector->isInstantiable()) {
+        
         // Get the constructor
         $constructor = $reflector->getConstructor();
 
         if ($constructor) {
             $params = $constructor->getParameters();
+            
             // Resolve dependencies for constructor parameters
             $dependencies = [];
             foreach ($params as $param) {
-                $paramClass = $param->getClass();
+                $type = $param->getType();
 
-                if ($paramClass) {
+                if ($type && ! $type->isBuiltin()) {
                     // Dependency is a class
-                    $dependency = $app[$paramClass->getName()];
+                    $dependency = $app[$type->getName()];
                 } else {
-                    // Dependency is nota class (e.g. scalar type or no typehint)
+                    // Dependency is not a class (e.g. scalar type or no typehint)
                     continue;
                 }
 
