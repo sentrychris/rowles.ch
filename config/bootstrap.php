@@ -35,14 +35,9 @@ function app(mixed $dependency = null): mixed
 }
 
 /*----------------------------------------
- | Load controllers                       | 
+ | Load resolver                          | 
  ----------------------------------------*/
-require_once __DIR__.'/../config/controllers.php';
-
-/*----------------------------------------
- | Load application routes                |
- ----------------------------------------*/
-require_once __DIR__.'/../config/routes.php';
+require_once __DIR__.'/../config/resolver.php';
 
 /*----------------------------------------
  | Set exception handler                  |

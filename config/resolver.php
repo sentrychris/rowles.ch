@@ -1,27 +1,26 @@
 <?php
 
 /*------------------------------------------------------
- | Register controllers and inject services            |
+ | Register classes and inject services                |
  ------------------------------------------------------*/
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use Composer\ClassMapGenerator\ClassMapGenerator;
 
 $namespace = 'App\\Controllers';
 $directory = __DIR__ . '/../src/Controllers';
+
 $map = ClassMapGenerator::createMap($directory);
 
-$controllers = [];
+$classes = [];
 foreach ($map as $class => $path) {
     if (strpos($class, $namespace) === 0) {       
         if (class_exists($class)) {
-            $controllers[] = $class;
+            $classes[] = $class;
         }
     }
 }
 
-foreach ($controllers as $controller) {
-    $reflector = new ReflectionClass($controller);
+foreach ($classes as $class) {
+    $reflector = new ReflectionClass($class);
 
     // Check if class can be instantiated (i.e. not abstract)
     if ($reflector->isInstantiable()) {
@@ -48,12 +47,12 @@ foreach ($controllers as $controller) {
                 $dependencies[] = $dependency;
             }
 
-            // Instantiate the controller with the resolved dependencies
-            // and store the controller instance in the service container
-            $app[$controller] = $reflector->newInstanceArgs($dependencies);
+            // Instantiate the class with the resolved dependencies
+            // and store the class instance in the service container
+            $app[$class] = $reflector->newInstanceArgs($dependencies);
         } else {
-            // Controller has no constructor or constructor with no params
-            $app[$controller] = $reflector->newInstance();
+            // Class has no constructor or constructor with no params
+            $app[$class] = $reflector->newInstance();
         }
     }
 }

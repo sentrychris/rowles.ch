@@ -22,17 +22,36 @@ class RouteServiceProvider implements ServiceProviderInterface
     public function register(Container $container): Container
     {
         $container['router'] = simpleDispatcher(function(RouteCollector $rc) {
-            $routes = require __DIR__ . '/../../config/routes.php';
-            if (! $routes) {
-                throw new \RuntimeException('No routes found, please ensure they are correctly configured.');
-            }
-
-            foreach($routes as $route) {
-                [$method, $path, $handler] = $route;
-                $rc->addRoute($method, $path, $handler);
-            }
+            $this->configureRoutes($rc, __DIR__ . '/../../routes/web.php', 'web');
+            $this->configureRoutes($rc, __DIR__ . '/../../routes/api.php', 'api');
         });
 
         return $container;
+    }
+
+    /**
+     * Configure application routes
+     * 
+     * @param RouteCollector $rc
+     * @param string $file
+     * @param string $type
+     * @return void
+     */
+    private function configureRoutes(RouteCollector $rc, string $file, string $type): void
+    {
+        if (! is_file($file)) {
+            throw new \RuntimeException('No '.$type.' routes found, please ensure '.$file.' file exists.');
+        }
+
+        $routes = require $file;
+        foreach($routes as $route) {
+            [$method, $path, $handler] = $route;
+            
+            if ($type === 'api') {
+                $path = '/api/'.$path;
+            }
+
+            $rc->addRoute($method, $path, $handler);
+        }
     }
 }
