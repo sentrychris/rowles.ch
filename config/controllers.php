@@ -6,4 +6,7 @@
 
 use Rowles\Controllers\HomeController;
 
- $app[HomeController::class] = fn() => new HomeController($app['test']); // DI test
+
+// TODO use reflection, loop through controller namespace, inspect dependencies
+// and load dynamically.
+$app[HomeController::class] = fn() => new HomeController($app['test']); // DI test
