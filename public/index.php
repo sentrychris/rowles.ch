@@ -1,10 +1,10 @@
 <?php
 
-use App\Versyx\View\ViewEngineInterface;
 use FastRoute\Dispatcher;
+use Psr\Http\Message\ResponseInterface;
 use Laminas\Diactoros\ServerRequestFactory;
-use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
+use App\Versyx\View\ViewEngineInterface;
 
 /*----------------------------------------
  | Bootstrap the application              |
@@ -36,12 +36,19 @@ switch ($route[0]) {
         break;
     case Dispatcher::FOUND:
         $handler = $route[1];
-        $vars = $route[2];
+        $routeParams = $route[2];
         [$class, $method] = $handler;
         
         $controller = $app[$class];
-        $response = $controller->$method($request, $vars);
+        $response = $controller->$method($request, $routeParams);
+
+        if (! $response instanceof ResponseInterface) {
+            throw new \RuntimeException(
+                $class. '->'.$method.' must return a valid PSR-7 response'
+            );
+        }
+
         break;
 }
 
-(new SapiEmitter())->emit(new HtmlResponse($response));
+(new SapiEmitter())->emit($response);

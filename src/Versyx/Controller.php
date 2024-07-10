@@ -4,6 +4,8 @@ namespace App\Versyx;
 
 use Psr\Log\LoggerInterface;
 use App\Versyx\View\ViewEngineInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 
 /**
  * Abstract base controller class.
@@ -51,6 +53,28 @@ abstract class Controller
         }
 
         return $this;
+    }
+
+    /**
+     * Return a PSR-7 compliant HTML response
+     * 
+     * @param string $template
+     * @return HtmlResponse
+     */
+    protected function view(string $template): HtmlResponse
+    {
+        return new HtmlResponse($this->render($template));
+    }
+
+    /**
+     * Return a PSR-7 compliant JSON response
+     * 
+     * @param array $data
+     * @return JsonResponse
+     */
+    protected function json(array $data): JsonResponse
+    {
+        return new JsonResponse($data);
     }
 
     /**

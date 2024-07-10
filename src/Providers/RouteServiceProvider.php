@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use FastRoute\RouteCollector;
 use App\Versyx\Service\Container;
 use App\Versyx\Service\ServiceProviderInterface;
-use FastRoute\RouteCollector;
 
 use function FastRoute\simpleDispatcher;
 
@@ -24,7 +24,7 @@ class RouteServiceProvider implements ServiceProviderInterface
         $container['router'] = simpleDispatcher(function(RouteCollector $rc) {
             $routes = require __DIR__ . '/../../config/routes.php';
             if (! $routes) {
-                throw new \Exception('No routes found, please ensure they are correctly configured.');
+                throw new \RuntimeException('No routes found, please ensure they are correctly configured.');
             }
 
             foreach($routes as $route) {

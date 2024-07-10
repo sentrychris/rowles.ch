@@ -39,10 +39,12 @@ class ExceptionHandler
     {
         $this->log->error($exception->getMessage());
 
+        $previous = $exception->getPrevious();
+
         echo $this->view->render('error/500.twig', [
             'debug' => env('APP_DEBUG'),
             'error' => $exception->getMessage(),
-            'trace' => ltrim($exception->getPrevious()->getTraceAsString())
+            'trace' => $previous ? ltrim($previous->getTraceAsString()) : $exception->getTraceAsString()
         ]);
     }
 }
