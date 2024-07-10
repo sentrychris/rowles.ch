@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Providers;
+namespace Versyx\Providers;
 
 use FastRoute\RouteCollector;
-use App\Versyx\Service\Container;
-use App\Versyx\Service\ServiceProviderInterface;
+use Versyx\Service\Container;
+use Versyx\Service\ServiceProviderInterface;
 
 use function FastRoute\simpleDispatcher;
 
@@ -22,8 +22,8 @@ class RouteServiceProvider implements ServiceProviderInterface
     public function register(Container $container): Container
     {
         $container['router'] = simpleDispatcher(function(RouteCollector $rc) {
-            $this->configureRoutes($rc, __DIR__ . '/../../routes/web.php', 'web');
-            $this->configureRoutes($rc, __DIR__ . '/../../routes/api.php', 'api');
+            $this->configureRoutes($rc, __DIR__ . '/../../../routes/web.php', 'web');
+            $this->configureRoutes($rc, __DIR__ . '/../../../routes/api.php', 'api');
         });
 
         return $container;

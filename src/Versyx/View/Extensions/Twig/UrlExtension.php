@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Versyx\View\Extensions\Twig;
+namespace Versyx\View\Extensions\Twig;
 
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;

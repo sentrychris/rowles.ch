@@ -15,11 +15,11 @@ $dotenv->load();
 /*----------------------------------------
  | Register service providers             |
  ----------------------------------------*/
-$app = new App\Versyx\Service\Container();
+$app = new Versyx\Service\Container();
 
-$app->register(new App\Providers\LogServiceProvider());
-$app->register(new App\Providers\RouteServiceProvider());
-$app->register(new App\Providers\ViewServiceProvider());
+$app->register(new Versyx\Providers\LogServiceProvider());
+$app->register(new Versyx\Providers\RouteServiceProvider());
+$app->register(new Versyx\Providers\ViewServiceProvider());
 
 /**
  * boot method to fetch services from the container
@@ -42,4 +42,4 @@ require_once __DIR__.'/../config/resolver.php';
 /*----------------------------------------
  | Set exception handler                  |
  ----------------------------------------*/
-new App\Versyx\Exception\ExceptionHandler($app);
+new Versyx\Exception\ExceptionHandler($app);

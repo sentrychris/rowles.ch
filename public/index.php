@@ -2,10 +2,10 @@
 
 use FastRoute\Dispatcher;
 use Psr\Http\Message\ResponseInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
-use App\Versyx\View\ViewEngineInterface;
-use Laminas\Diactoros\Response\HtmlResponse;
+use Versyx\View\ViewEngineInterface;
 
 /*----------------------------------------
  | Bootstrap the application              |

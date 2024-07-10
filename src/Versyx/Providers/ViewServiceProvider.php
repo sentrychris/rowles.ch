@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace Versyx\Providers;
 
-use App\Versyx\Service\Container;
-use App\Versyx\Service\ServiceProviderInterface;
-use App\Versyx\View\TwigEngine;
-use App\Versyx\View\ViewEngineInterface;
+use Versyx\Service\Container;
+use Versyx\Service\ServiceProviderInterface;
+use Versyx\View\TwigEngine;
+use Versyx\View\ViewEngineInterface;
 
 /**
  * Class ViewServiceProvider

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Versyx\Exception;
+namespace Versyx\Exception;
 
 use InvalidArgumentException;
 use Psr\Container\ContainerExceptionInterface;

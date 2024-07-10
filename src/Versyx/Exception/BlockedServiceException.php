@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Versyx\Exception;
+namespace Versyx\Exception;
 
 use RuntimeException;
 use Psr\Container\ContainerExceptionInterface;

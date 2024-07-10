@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Versyx\View;
+namespace Versyx\View;
 
 interface ViewEngineInterface {
   /**

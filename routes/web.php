@@ -5,5 +5,5 @@
  ----------------------------------------*/
  
 return [
-  ['GET', '/', [App\Controllers\HomeController::class, 'index']]
+  ['GET', '/', [App\Controllers\HomeController::class, 'index']],
 ];

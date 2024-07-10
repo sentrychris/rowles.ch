@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Versyx\Service;
+namespace Versyx\Service;
 
-use App\Versyx\Service\Container;
+use Versyx\Service\Container;
 
 interface ServiceProviderInterface
 {

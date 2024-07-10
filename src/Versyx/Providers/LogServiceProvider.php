@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Providers;
+namespace Versyx\Providers;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
-use App\Versyx\Service\Container;
-use App\Versyx\Service\ServiceProviderInterface;
+use Versyx\Service\Container;
+use Versyx\Service\ServiceProviderInterface;
 
 /**
  * Class LogServiceProvider
@@ -40,6 +40,6 @@ class LogServiceProvider implements ServiceProviderInterface
      */
     private function logPath(): string
     {
-        return __DIR__ . '/../../logs/app.log';
+        return __DIR__ . '/../../../logs/app.log';
     }
 }

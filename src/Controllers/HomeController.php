@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Versyx\Controller;
+use Versyx\Controller;
 
 /**
  * Page controller class.

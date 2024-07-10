@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Versyx\Exception;
+namespace Versyx\Exception;
 
 use Psr\Log\LoggerInterface;
-use App\Versyx\Service\Container;
-use App\Versyx\View\ViewEngineInterface;
+use Versyx\Service\Container;
+use Versyx\View\ViewEngineInterface;
 
 /**
  * Class ExceptionHandler

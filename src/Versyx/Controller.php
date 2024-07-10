@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Versyx;
+namespace Versyx;
 
 use Psr\Log\LoggerInterface;
-use App\Versyx\View\ViewEngineInterface;
+use Versyx\View\ViewEngineInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 
