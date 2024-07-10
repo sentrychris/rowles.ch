@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Handlers;
+namespace Rowles;
 
 use Psr\Log\LoggerInterface;
 use Rowles\Container;

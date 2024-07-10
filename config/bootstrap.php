@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-
 session_start();
 
 /*----------------------------------------
@@ -30,11 +28,7 @@ $app->register(new Rowles\Providers\ViewServiceProvider());
 function app($dependency = null)
 {
     global $app;
-    
-    if (!$dependency) {
-        return $app;
-    }
-
+    if (!$dependency) return $app;
     return $app->offsetExists($dependency) ? $app->offsetGet($dependency) : false;
 }
 
@@ -48,4 +42,7 @@ require_once __DIR__.'/../config/controllers.php';
  ----------------------------------------*/
 require_once __DIR__.'/../config/routes.php';
 
-new Rowles\Handlers\ExceptionHandler($app);
+/*----------------------------------------
+ | Set exception handler                  |
+ ----------------------------------------*/
+new Rowles\ExceptionHandler($app);
