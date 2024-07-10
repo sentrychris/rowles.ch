@@ -23,8 +23,6 @@ $app->register(new Rowles\Providers\LogServiceProvider());
 $app->register(new Rowles\Providers\RouteServiceProvider());
 $app->register(new Rowles\Providers\ViewServiceProvider());
 
-$app['test'] = new Test(); // DI Test
-
 /**
  * boot method to fetch services from the container
  *
