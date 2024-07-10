@@ -4,4 +4,4 @@
  | Configure application routes           |
  ----------------------------------------*/
 
-$app['router']->get('/', fn() => $app[Rowles\Controllers\HomeController::class]->index());
+$app['router']->get('/', fn() => $app[App\Controllers\HomeController::class]->index());

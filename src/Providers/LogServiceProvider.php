@@ -1,12 +1,12 @@
 <?php
 
-namespace Rowles\Providers;
+namespace App\Providers;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
-use Rowles\Container;
-use Rowles\Contracts\ServiceProviderInterface;
+use App\Container;
+use App\Contracts\ServiceProviderInterface;
 
 /**
  * Class LogServiceProvider

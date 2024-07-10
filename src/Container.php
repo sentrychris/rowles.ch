@@ -1,13 +1,13 @@
 <?php
 
-namespace Rowles;
+namespace App;
 
 use ArrayAccess;
 use SplObjectStorage;
-use Rowles\Exceptions\ExpectedInvokableException;
-use Rowles\Exceptions\BlockedServiceException;
-use Rowles\Exceptions\UnknownIdentifierException;
-use Rowles\Contracts\ServiceProviderInterface;
+use App\Exceptions\ExpectedInvokableException;
+use App\Exceptions\BlockedServiceException;
+use App\Exceptions\UnknownIdentifierException;
+use App\Contracts\ServiceProviderInterface;
 
 class Container implements ArrayAccess
 {

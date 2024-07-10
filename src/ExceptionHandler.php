@@ -1,10 +1,10 @@
 <?php
 
-namespace Rowles;
+namespace App;
 
 use Psr\Log\LoggerInterface;
-use Rowles\Container;
-use Rowles\Contracts\ViewEngineInterface;
+use App\Container;
+use App\Contracts\ViewEngineInterface;
 
 /**
  * Class ExceptionHandler

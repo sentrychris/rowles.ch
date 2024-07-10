@@ -1,15 +1,15 @@
 <?php
 
-namespace Rowles;
+namespace App;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Extension\DebugExtension;
-use Rowles\Extensions\Twig\AssetExtension;
-use Rowles\Extensions\Twig\DotenvExtension;
-use Rowles\Extensions\Twig\SessionExtension;
-use Rowles\Extensions\Twig\UrlExtension;
-use Rowles\Contracts\ViewEngineInterface;
+use App\Extensions\Twig\AssetExtension;
+use App\Extensions\Twig\DotenvExtension;
+use App\Extensions\Twig\SessionExtension;
+use App\Extensions\Twig\UrlExtension;
+use App\Contracts\ViewEngineInterface;
 
 class TwigEngine implements ViewEngineInterface
 {

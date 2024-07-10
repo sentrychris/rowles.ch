@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Exceptions;
+namespace App\Exceptions;
 
 use RuntimeException;
 use Psr\Container\ContainerExceptionInterface;

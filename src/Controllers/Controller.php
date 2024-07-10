@@ -1,9 +1,9 @@
 <?php
 
-namespace Rowles\Controllers;
+namespace App\Controllers;
 
 use Psr\Log\LoggerInterface;
-use Rowles\Contracts\ViewEngineInterface;
+use App\Contracts\ViewEngineInterface;
 
 /**
  * Abstract base controller class.

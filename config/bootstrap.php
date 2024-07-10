@@ -13,11 +13,11 @@ $dotenv->load();
 /*----------------------------------------
  | Register service providers             |
  ----------------------------------------*/
-$app = new Rowles\Container();
+$app = new App\Container();
 
-$app->register(new Rowles\Providers\LogServiceProvider());
-$app->register(new Rowles\Providers\RouteServiceProvider());
-$app->register(new Rowles\Providers\ViewServiceProvider());
+$app->register(new App\Providers\LogServiceProvider());
+$app->register(new App\Providers\RouteServiceProvider());
+$app->register(new App\Providers\ViewServiceProvider());
 
 /**
  * boot method to fetch services from the container
@@ -45,4 +45,4 @@ require_once __DIR__.'/../config/routes.php';
 /*----------------------------------------
  | Set exception handler                  |
  ----------------------------------------*/
-new Rowles\ExceptionHandler($app);
+new App\ExceptionHandler($app);

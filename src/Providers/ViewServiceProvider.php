@@ -1,11 +1,11 @@
 <?php
 
-namespace Rowles\Providers;
+namespace App\Providers;
 
-use Rowles\Container;
-use Rowles\Contracts\ServiceProviderInterface;
-use Rowles\Contracts\ViewEngineInterface;
-use Rowles\TwigEngine;
+use App\Container;
+use App\Contracts\ServiceProviderInterface;
+use App\Contracts\ViewEngineInterface;
+use App\TwigEngine;
 
 /**
  * Class ViewServiceProvider

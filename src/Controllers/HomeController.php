@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Controllers;
+namespace App\Controllers;
 /**
  * Page controller class.
  */

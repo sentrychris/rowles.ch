@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Extensions\Twig;
+namespace App\Extensions\Twig;
 
 use Psr\Log\LoggerInterface;
 use Twig\TwigFunction;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Exceptions;
+namespace App\Exceptions;
 
 use InvalidArgumentException;
 use Psr\Container\ContainerExceptionInterface;

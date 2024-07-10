@@ -1,10 +1,10 @@
 <?php
 
-namespace Rowles\Providers;
+namespace App\Providers;
 
 use Klein\Klein;
-use Rowles\Container;
-use Rowles\Contracts\ServiceProviderInterface;
+use App\Container;
+use App\Contracts\ServiceProviderInterface;
 
 /**
  * Class RouteServiceProvider

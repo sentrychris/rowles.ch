@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Rowles\\": "src/"
+            "App\\": "src/"
         },
         "files": [
           "src/Helpers/functions.php"

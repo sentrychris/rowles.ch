@@ -1,8 +1,8 @@
 <?php
 
-namespace Rowles\Contracts;
+namespace App\Contracts;
 
-use Rowles\Container;
+use App\Container;
 
 interface ServiceProviderInterface
 {

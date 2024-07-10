@@ -5,7 +5,7 @@
  ------------------------------------------------------*/
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$namespace = 'Rowles\\Controllers';
+$namespace = 'App\\Controllers';
 
 $controllers = [];
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rowles\Contracts;
+namespace App\Contracts;
 
 interface ViewEngineInterface {
   /**
