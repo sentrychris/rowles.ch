@@ -35,7 +35,6 @@ foreach ($controllers as $controller) {
 
         if ($constructor) {
             $params = $constructor->getParameters();
-
             // Resolve dependencies for constructor parameters
             $dependencies = [];
             foreach ($params as $param) {
