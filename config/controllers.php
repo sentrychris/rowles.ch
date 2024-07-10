@@ -1,14 +1,11 @@
 <?php
 
-/*----------------------------------------
- | Register application controllers       |
- ----------------------------------------*/
+/*------------------------------------------------------
+ | Register controllers and inject services            |
+ ------------------------------------------------------*/
 
 use Rowles\Controllers\HomeController;
 
-/** @var array */
-$controllers = [
-    'home' => new HomeController($app),
-];
-
-return extract($controllers);
+ $app[HomeController::class] = function ($container) {
+    return new HomeController($container['log'], $container['view']);
+};

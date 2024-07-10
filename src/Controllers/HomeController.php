@@ -3,6 +3,8 @@
 namespace Rowles\Controllers;
 
 use Pimple\Container;
+use Psr\Log\LoggerInterface;
+use Twig\Environment;
 
 /**
  * Page controller class.
@@ -14,9 +16,9 @@ class HomeController extends Controller
      *
      * @param Container $container
      */
-    public function __construct(Container $container)
+    public function __construct(LoggerInterface $logger, Environment $view)
     {
-        parent::__construct($container);
+        parent::__construct($logger, $view);
     }
 
     /**
@@ -25,7 +27,7 @@ class HomeController extends Controller
      * @param array $data
      * @return mixed
      */
-    public function home(array $data = [])
+    public function index(array $data = [])
     {
         return $this->setViewData($data)->render('home');
     }

@@ -3,16 +3,11 @@
 /*----------------------------------------
  | Configure application routes           |
  ----------------------------------------*/
-
-use Pimple\Container;
-use Rowles\Controllers\HomeController;
-
-/** @var Container $app */
-$router = $app['router'];
-
 /**
  * Home page route.
  *
  * @var HomeController $home
  */
-$router->get('/', fn() => $home->home());
+$app['router']->get('/', function() use ($app) {
+    return $app[Rowles\Controllers\HomeController::class]->index();
+});
