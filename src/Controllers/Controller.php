@@ -4,6 +4,7 @@ namespace Rowles\Controllers;
 
 use Pimple\Container;
 use Psr\Log\LoggerInterface;
+use Rowles\Contracts\ViewEngineInterface;
 
 /**
  * Abstract base controller class.
@@ -27,7 +28,7 @@ abstract class Controller
     public function __construct()
     {
         $this->log = app(LoggerInterface::class);
-        $this->view = app('view');
+        $this->view = app(ViewEngineInterface::class);
 
         $this->data['title'] = env("APP_NAME");
     }

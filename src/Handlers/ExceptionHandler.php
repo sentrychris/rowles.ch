@@ -4,6 +4,7 @@ namespace Rowles\Handlers;
 
 use Pimple\Container;
 use Psr\Log\LoggerInterface;
+use Rowles\Contracts\ViewEngineInterface;
 
 /**
  * Class ExceptionHandler
@@ -29,7 +30,8 @@ class ExceptionHandler
     public function __construct(Container $container)
     {
         $this->log = $container[LoggerInterface::class];
-        $this->view = $container['view'];
+        $this->view = $container[ViewEngineInterface::class];
+
         $router = $container['router'];
 
         $router->respond(function () use ($router) {
