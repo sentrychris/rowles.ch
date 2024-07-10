@@ -6,6 +6,4 @@
 
 use Rowles\Controllers\HomeController;
 
- $app[HomeController::class] = function ($container) {
-    return new HomeController($container['log'], $container['view']);
-};
+ $app[HomeController::class] = fn() => new HomeController($app['test']); // DI test

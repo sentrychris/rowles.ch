@@ -2,23 +2,25 @@
 
 namespace Rowles\Controllers;
 
-use Pimple\Container;
-use Psr\Log\LoggerInterface;
-use Twig\Environment;
+use Rowles\Test;
 
 /**
  * Page controller class.
  */
 class HomeController extends Controller
 {
+    /** @var Test */
+    private Test $test;
+
     /**
      * HomeController constructor.
      *
      * @param Container $container
      */
-    public function __construct(LoggerInterface $logger, Environment $view)
+    public function __construct(Test $test)
     {
-        parent::__construct($logger, $view);
+        parent::__construct();
+        $this->test = $test;
     }
 
     /**
@@ -29,6 +31,7 @@ class HomeController extends Controller
      */
     public function index(array $data = [])
     {
+        $this->test->do();
         return $this->setViewData($data)->render('home');
     }
 }

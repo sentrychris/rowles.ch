@@ -1,5 +1,7 @@
 <?php
 
+use Rowles\Test;
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 session_start();
@@ -21,6 +23,8 @@ $app->register(new Rowles\Providers\LogServiceProvider());
 $app->register(new Rowles\Providers\RouteServiceProvider());
 $app->register(new Rowles\Providers\ViewServiceProvider());
 
+$app['test'] = new Test(); // DI Test
+
 /**
  * boot method to fetch services from the container
  *
@@ -30,6 +34,11 @@ $app->register(new Rowles\Providers\ViewServiceProvider());
 function app($dependency = null)
 {
     global $app;
+    
+    if (!$dependency) {
+        return $app;
+    }
+
     return $app->offsetExists($dependency) ? $app->offsetGet($dependency) : false;
 }
 

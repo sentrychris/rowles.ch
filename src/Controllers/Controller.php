@@ -3,8 +3,6 @@
 namespace Rowles\Controllers;
 
 use Pimple\Container;
-use Psr\Log\LoggerInterface;
-use Twig\Environment;
 
 /**
  * Abstract base controller class.
@@ -25,10 +23,10 @@ abstract class Controller
      *
      * @param Container $container
      */
-    public function __construct(LoggerInterface $logger, Environment $view)
+    public function __construct()
     {
-        $this->log = $logger;
-        $this->view = $view;
+        $this->log = app('log');
+        $this->view = app('view');
 
         $this->data['title'] = env("APP_NAME");
     }
