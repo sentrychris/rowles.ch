@@ -3,5 +3,7 @@
 /*----------------------------------------
  | Configure application routes           |
  ----------------------------------------*/
-
-$app['router']->get('/', fn() => $app[App\Controllers\HomeController::class]->index());
+ 
+return [
+  ['GET', '/', [App\Controllers\HomeController::class, 'index']]
+];

@@ -15,8 +15,8 @@ class HomeController extends Controller
      * @param array $data
      * @return mixed
      */
-    public function index(array $data = [])
+    public function index()
     {
-        return $this->setViewData($data)->render('home');
+        return $this->render('home');
     }
 }

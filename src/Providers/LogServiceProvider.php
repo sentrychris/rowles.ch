@@ -24,7 +24,8 @@ class LogServiceProvider implements ServiceProviderInterface
         $container[LoggerInterface::class] = new Logger('app');
 
         try {
-            $container[LoggerInterface::class]->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
+            $container[LoggerInterface::class]
+                ->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
         } catch (\Exception $e) {
             return $e->getMessage();
         }

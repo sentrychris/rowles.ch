@@ -17,11 +17,6 @@ class ExceptionHandler
     /** @var mixed $view */
     protected $view;
 
-    /** @var mixed $router */
-    protected $router;
-
-    const HTTP_NOTFOUND = 404;
-
     /**
      * ExceptionHandler constructor.
      *
@@ -31,24 +26,6 @@ class ExceptionHandler
     {
         $this->log = $container[LoggerInterface::class];
         $this->view = $container[ViewEngineInterface::class];
-
-        $router = $container['router'];
-
-        $router->respond(function () use ($router) {
-            $router->onHttpError(function ($code, $router) {
-                if (!env('APP_DEBUG')) {
-                    switch ($code) {
-                        case self::HTTP_NOTFOUND:
-                            $router->response()->body($this->view->render('error/404.twig'));
-                            break;
-                        default:
-                            $router->response()->body($this->view->render('error/500.twig'));
-                    }
-                } else {
-                    $router->response()->body($router->response()->status());
-                }
-            });
-        });
 
         set_exception_handler([$this, 'handle']);
     }
@@ -61,6 +38,7 @@ class ExceptionHandler
     public function handle($exception)
     {
         $this->log->error($exception->getMessage());
+
         echo $this->view->render('error/500.twig', [
             'debug' => env('APP_DEBUG'),
             'error' => $exception->getMessage(),
