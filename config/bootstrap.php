@@ -1,7 +1,5 @@
 <?php
 
-use Rowles\Test;
-
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 session_start();
@@ -22,8 +20,6 @@ $app = new Pimple\Container();
 $app->register(new Rowles\Providers\LogServiceProvider());
 $app->register(new Rowles\Providers\RouteServiceProvider());
 $app->register(new Rowles\Providers\ViewServiceProvider());
-
-$app[Test::class] = new Test(); // DI Test
 
 /**
  * boot method to fetch services from the container

@@ -11,10 +11,10 @@ use Rowles\Contracts\ViewEngineInterface;
  */
 abstract class Controller
 {
-    /** @var mixed $log */
+    /** @var LoggerInterface $log */
     protected $log;
 
-    /** @var mixed $view */
+    /** @var ViewEngineInterface $view */
     protected $view;
 
     /** @var array $data */
