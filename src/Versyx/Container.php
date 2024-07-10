@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Versyx;
 
 use ArrayAccess;
 use SplObjectStorage;

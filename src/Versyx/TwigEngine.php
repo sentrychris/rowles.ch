@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Versyx;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -55,7 +55,7 @@ class TwigEngine implements ViewEngineInterface
      */
     private function viewPath(): string
     {
-        return __DIR__ . '/../resources/views';
+        return env('APP_ROOT') . '/resources/views';
     }
 
     /**
@@ -65,6 +65,6 @@ class TwigEngine implements ViewEngineInterface
      */
     private function cachePath(): string
     {
-        return __DIR__ . '/../public/cache';
+        return env('APP_ROOT') . '/public/cache';
     }
 }

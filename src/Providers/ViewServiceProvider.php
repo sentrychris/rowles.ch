@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Container;
+use App\Versyx\Container;
+use App\Versyx\TwigEngine;
 use App\Contracts\ServiceProviderInterface;
 use App\Contracts\ViewEngineInterface;
-use App\TwigEngine;
 
 /**
  * Class ViewServiceProvider

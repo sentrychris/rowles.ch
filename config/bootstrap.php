@@ -13,7 +13,7 @@ $dotenv->load();
 /*----------------------------------------
  | Register service providers             |
  ----------------------------------------*/
-$app = new App\Container();
+$app = new App\Versyx\Container();
 
 $app->register(new App\Providers\LogServiceProvider());
 $app->register(new App\Providers\RouteServiceProvider());
@@ -22,10 +22,10 @@ $app->register(new App\Providers\ViewServiceProvider());
 /**
  * boot method to fetch services from the container
  *
- * @param $dependency
+ * @param mixed $dependency
  * @return mixed
  */
-function app($dependency = null)
+function app(mixed $dependency = null): mixed
 {
     global $app;
     if (!$dependency) return $app;
@@ -45,4 +45,4 @@ require_once __DIR__.'/../config/routes.php';
 /*----------------------------------------
  | Set exception handler                  |
  ----------------------------------------*/
-new App\ExceptionHandler($app);
+new App\Versyx\ExceptionHandler($app);

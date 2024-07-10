@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Klein\Klein;
-use App\Container;
+use App\Versyx\Container;
 use App\Contracts\ServiceProviderInterface;
 
 /**

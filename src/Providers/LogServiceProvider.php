@@ -5,7 +5,7 @@ namespace App\Providers;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
-use App\Container;
+use App\Versyx\Container;
 use App\Contracts\ServiceProviderInterface;
 
 /**

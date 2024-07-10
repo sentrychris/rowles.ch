@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Versyx;
 
 use Psr\Log\LoggerInterface;
-use App\Container;
+use App\Versyx\Container;
 use App\Contracts\ViewEngineInterface;
 
 /**

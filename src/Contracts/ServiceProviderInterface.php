@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-use App\Container;
+use App\Versyx\Container;
 
 interface ServiceProviderInterface
 {
