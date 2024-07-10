@@ -25,8 +25,7 @@ class ViewServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple): Container
     {
-        $loader = new FilesystemLoader($this->viewPath());
-        $pimple['view'] = new Environment($loader, [
+        $pimple['view'] = new Environment(new FilesystemLoader($this->viewPath()), [
             'cache' => env('APP_CACHE') ? $this->cachePath() : false,
             'debug' => env('APP_DEBUG'),
         ]);

@@ -2,8 +2,10 @@
 
 namespace Rowles;
 
+use Psr\Log\LoggerInterface;
+
 class Test {
     public function do() {
-        app('log')->info('test');
+        app(LoggerInterface::class)->info('test');
     }
 }

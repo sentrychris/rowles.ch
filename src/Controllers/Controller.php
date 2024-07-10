@@ -3,6 +3,7 @@
 namespace Rowles\Controllers;
 
 use Pimple\Container;
+use Psr\Log\LoggerInterface;
 
 /**
  * Abstract base controller class.
@@ -25,7 +26,7 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->log = app('log');
+        $this->log = app(LoggerInterface::class);
         $this->view = app('view');
 
         $this->data['title'] = env("APP_NAME");

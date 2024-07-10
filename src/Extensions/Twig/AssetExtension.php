@@ -2,6 +2,7 @@
 
 namespace Rowles\Extensions\Twig;
 
+use Psr\Log\LoggerInterface;
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 
@@ -51,7 +52,7 @@ class AssetExtension extends AbstractExtension
     private function url($uri, $file)
     {
         if (!preg_match('%^/(?!.*/$)(?!.*[/]{2,})(?!.*\?.*\?)(?!.*\./).*%im', $uri)){;
-            app('log')->error('Could not validate uri: ' . $uri . ' for file: ' . $file);
+            app(LoggerInterface::class)->error('Could not validate uri: ' . $uri . ' for file: ' . $file);
         }
 
         // TODO Handle consecutive slashes
@@ -60,7 +61,7 @@ class AssetExtension extends AbstractExtension
         // rewriting or something will need to happen.
 
         if(substr_count($uri, '//') > 0) {
-            app('log')->debug('true');
+            app(LoggerInterface::class)->debug('true');
         }
 
         $depth = substr_count($uri, '/');

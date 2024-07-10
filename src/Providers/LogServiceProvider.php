@@ -6,6 +6,7 @@ use Monolog\Logger;
 use Pimple\Container;
 use Monolog\Handler\StreamHandler;
 use Pimple\ServiceProviderInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class LogServiceProvider
@@ -20,10 +21,10 @@ class LogServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        $pimple['log'] = new Logger('app');
+        $pimple[LoggerInterface::class] = new Logger('app');
 
         try {
-            $pimple['log']->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
+            $pimple[LoggerInterface::class]->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
