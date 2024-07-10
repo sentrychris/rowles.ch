@@ -5,6 +5,7 @@ use Psr\Http\Message\ResponseInterface;
 use Laminas\Diactoros\ServerRequestFactory;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use App\Versyx\View\ViewEngineInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
 
 /*----------------------------------------
  | Bootstrap the application              |
@@ -29,10 +30,14 @@ $route = $app['router']->dispatch(
 
 switch ($route[0]) {
     case Dispatcher::NOT_FOUND:
-        $response = $app[ViewEngineInterface::class]->render('error/404.twig');
+        $response = new HtmlResponse(
+            $app[ViewEngineInterface::class]->render('error/404.twig')
+        );
         break;
     case Dispatcher::METHOD_NOT_ALLOWED:
-        $response = $app[ViewEngineInterface::class]->render('error/500.twig');
+        $response = new HtmlResponse(
+            $app[ViewEngineInterface::class]->render('error/500.twig')
+        );
         break;
     case Dispatcher::FOUND:
         $handler = $route[1];
