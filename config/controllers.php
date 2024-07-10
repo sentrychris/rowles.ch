@@ -5,23 +5,18 @@
  ------------------------------------------------------*/
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Composer\ClassMapGenerator\ClassMapGenerator;
+
 $namespace = 'App\\Controllers';
+$directory = __DIR__ . '/../src/Controllers';
+$map = ClassMapGenerator::createMap($directory);
 
 $controllers = [];
-
-// TODO not this...
-$dir = __DIR__ . '/../src/Controllers';
-$files = array_diff(scandir($dir), ['.', '..']);
-foreach ($files as $file) {
-    if (is_file($dir.'/'.$file)) {
-        require_once $dir.'/'.$file;
-    }
-}
-
-// Get all classes under the specified namespace
-foreach (get_declared_classes() as $class) {
-    if (strpos($class, $namespace) === 0) {
-        $controllers[] = $class;
+foreach ($map as $class => $path) {
+    if (strpos($class, $namespace) === 0) {       
+        if (class_exists($class)) {
+            $controllers[] = $class;
+        }
     }
 }
 
@@ -30,7 +25,7 @@ foreach ($controllers as $controller) {
 
     // Check if class can be instantiated (i.e. not abstract)
     if ($reflector->isInstantiable()) {
-        
+
         // Get the constructor
         $constructor = $reflector->getConstructor();
 
