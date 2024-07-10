@@ -1196,12 +1196,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/versyxdigital/framework.git",
-                "reference": "6b51590e4712269c55dd6699d54f78634dc8ec17"
+                "reference": "c804c42bebdf6f6e6f76c29e82a3f2597638ac75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/versyxdigital/framework/zipball/6b51590e4712269c55dd6699d54f78634dc8ec17",
-                "reference": "6b51590e4712269c55dd6699d54f78634dc8ec17",
+                "url": "https://api.github.com/repos/versyxdigital/framework/zipball/c804c42bebdf6f6e6f76c29e82a3f2597638ac75",
+                "reference": "c804c42bebdf6f6e6f76c29e82a3f2597638ac75",
                 "shasum": ""
             },
             "require": {
@@ -1240,7 +1240,7 @@
                 "source": "https://github.com/versyxdigital/framework/tree/main",
                 "issues": "https://github.com/versyxdigital/framework/issues"
             },
-            "time": "2024-07-10T17:46:35+00:00"
+            "time": "2024-07-10T21:27:51+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
