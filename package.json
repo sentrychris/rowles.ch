@@ -1,13 +1,12 @@
 {
-  "name": "versyx-framework",
-  "version": "1.0.0",
-  "description": "",
+  "name": "rowles.ch",
+  "description": "Personal website",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --config webpack.config.js --watch"
   },
-  "author": "",
+  "author": "Chris Rowles <crowles.sdx@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^7.1.2",
