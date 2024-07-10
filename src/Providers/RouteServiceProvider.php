@@ -3,8 +3,8 @@
 namespace Rowles\Providers;
 
 use Klein\Klein;
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
+use Rowles\Container;
+use Rowles\Contracts\ServiceProviderInterface;
 
 /**
  * Class RouteServiceProvider
@@ -14,13 +14,13 @@ class RouteServiceProvider implements ServiceProviderInterface
     /**
      * Register route service provider.
      *
-     * @param Container $pimple
+     * @param Container $container
      * @return Container
      */
-    public function register(Container $pimple): Container
+    public function register(Container $container): Container
     {
-        $pimple['router'] = new Klein();
+        $container['router'] = new Klein();
 
-        return $pimple;
+        return $container;
     }
 }

@@ -3,10 +3,10 @@
 namespace Rowles\Providers;
 
 use Monolog\Logger;
-use Pimple\Container;
 use Monolog\Handler\StreamHandler;
-use Pimple\ServiceProviderInterface;
 use Psr\Log\LoggerInterface;
+use Rowles\Container;
+use Rowles\Contracts\ServiceProviderInterface;
 
 /**
  * Class LogServiceProvider
@@ -16,20 +16,20 @@ class LogServiceProvider implements ServiceProviderInterface
     /**
      * Register log service provider.
      *
-     * @param Container $pimple
+     * @param Container $container
      * @return Container|string
      */
-    public function register(Container $pimple)
+    public function register(Container $container)
     {
-        $pimple[LoggerInterface::class] = new Logger('app');
+        $container[LoggerInterface::class] = new Logger('app');
 
         try {
-            $pimple[LoggerInterface::class]->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
+            $container[LoggerInterface::class]->pushHandler(new StreamHandler($this->logPath(), Logger::DEBUG));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
 
-        return $pimple;
+        return $container;
     }
 
     /**

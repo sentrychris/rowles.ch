@@ -2,9 +2,8 @@
 
 namespace Rowles\Providers;
 
-use Pimple\Container;
-
-use Pimple\ServiceProviderInterface;
+use Rowles\Container;
+use Rowles\Contracts\ServiceProviderInterface;
 use Rowles\Contracts\ViewEngineInterface;
 use Rowles\TwigEngine;
 
@@ -16,12 +15,12 @@ class ViewServiceProvider implements ServiceProviderInterface
     /**
      * Register view service provider.
      *
-     * @param Container $pimple
+     * @param Container $container
      * @return Container
      */
-    public function register(Container $pimple): Container
+    public function register(Container $container): Container
     {
-        $pimple[ViewEngineInterface::class] = new TwigEngine();
-        return $pimple;
+        $container[ViewEngineInterface::class] = new TwigEngine();
+        return $container;
     }
 }

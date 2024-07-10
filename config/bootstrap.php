@@ -15,7 +15,7 @@ $dotenv->load();
 /*----------------------------------------
  | Register service providers             |
  ----------------------------------------*/
-$app = new Pimple\Container();
+$app = new Rowles\Container();
 
 $app->register(new Rowles\Providers\LogServiceProvider());
 $app->register(new Rowles\Providers\RouteServiceProvider());

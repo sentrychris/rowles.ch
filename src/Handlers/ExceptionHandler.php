@@ -2,8 +2,8 @@
 
 namespace Rowles\Handlers;
 
-use Pimple\Container;
 use Psr\Log\LoggerInterface;
+use Rowles\Container;
 use Rowles\Contracts\ViewEngineInterface;
 
 /**

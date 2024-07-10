@@ -2,7 +2,6 @@
 
 namespace Rowles\Controllers;
 
-use Pimple\Container;
 use Psr\Log\LoggerInterface;
 use Rowles\Contracts\ViewEngineInterface;
 
@@ -21,9 +20,10 @@ abstract class Controller
     public array $data = [];
 
     /**
-     * Abstract Controller constructor.
+     * Abstract base Controller constructor.
      *
-     * @param Container $container
+     * @param LoggerInterface $logger
+     * @param ViewEngineInterface $view
      */
     public function __construct(LoggerInterface $logger, ViewEngineInterface $view)
     {
