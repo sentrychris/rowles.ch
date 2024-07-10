@@ -20,6 +20,7 @@ $app = new Versyx\Service\Container();
 $app->register(new Versyx\Providers\LogServiceProvider());
 $app->register(new Versyx\Providers\RouteServiceProvider());
 $app->register(new Versyx\Providers\ViewServiceProvider());
+// $app->register(new App\Providers\AppServiceProvider());
 
 /**
  * service locator method to fetch services from the container
@@ -35,11 +36,13 @@ function app(mixed $dependency = null): mixed
 }
 
 /*----------------------------------------
- | Load resolver                          | 
+ | Load dependency injection              | 
  ----------------------------------------*/
-$namespace = 'App\\Controllers';
-$directory = __DIR__ . '/src/Controllers';
-Versyx\Resolver::map($app, $namespace, $directory);
+Versyx\Resolver::map(
+    $app,
+    namespace: 'App\\Controllers',
+    directory: __DIR__ . '/src/Controllers'
+);
 
 /*----------------------------------------
  | Set exception handler                  |
