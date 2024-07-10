@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
-use App\Versyx\Container;
-use App\Versyx\TwigEngine;
-use App\Contracts\ServiceProviderInterface;
-use App\Contracts\ViewEngineInterface;
+use App\Versyx\Service\Container;
+use App\Versyx\Service\ServiceProviderInterface;
+use App\Versyx\View\TwigEngine;
+use App\Versyx\View\ViewEngineInterface;
 
 /**
  * Class ViewServiceProvider
+ * 
+ * Versyx uses twig by default.
  */
 class ViewServiceProvider implements ServiceProviderInterface
 {

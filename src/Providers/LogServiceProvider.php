@@ -5,8 +5,8 @@ namespace App\Providers;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
-use App\Versyx\Container;
-use App\Contracts\ServiceProviderInterface;
+use App\Versyx\Service\Container;
+use App\Versyx\Service\ServiceProviderInterface;
 
 /**
  * Class LogServiceProvider
@@ -19,7 +19,7 @@ class LogServiceProvider implements ServiceProviderInterface
      * @param Container $container
      * @return Container|string
      */
-    public function register(Container $container)
+    public function register(Container $container): Container
     {
         $container[LoggerInterface::class] = new Logger('app');
 

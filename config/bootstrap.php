@@ -13,7 +13,7 @@ $dotenv->load();
 /*----------------------------------------
  | Register service providers             |
  ----------------------------------------*/
-$app = new App\Versyx\Container();
+$app = new App\Versyx\Service\Container();
 
 $app->register(new App\Providers\LogServiceProvider());
 $app->register(new App\Providers\RouteServiceProvider());
@@ -45,4 +45,4 @@ require_once __DIR__.'/../config/routes.php';
 /*----------------------------------------
  | Set exception handler                  |
  ----------------------------------------*/
-new App\Versyx\ExceptionHandler($app);
+new App\Versyx\Exception\ExceptionHandler($app);

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Versyx;
+namespace App\Versyx\Service;
 
 use ArrayAccess;
 use SplObjectStorage;
-use App\Exceptions\ExpectedInvokableException;
-use App\Exceptions\BlockedServiceException;
-use App\Exceptions\UnknownIdentifierException;
-use App\Contracts\ServiceProviderInterface;
+use App\Versyx\Exception\ExpectedInvokableException;
+use App\Versyx\Exception\BlockedServiceException;
+use App\Versyx\Exception\UnknownIdentifierException;
+use App\Versyx\Service\ServiceProviderInterface;
 
 class Container implements ArrayAccess
 {

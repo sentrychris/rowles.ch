@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Klein\Klein;
-use App\Versyx\Container;
-use App\Contracts\ServiceProviderInterface;
+use App\Versyx\Service\Container;
+use App\Versyx\Service\ServiceProviderInterface;
 
 /**
  * Class RouteServiceProvider

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Psr\Log\LoggerInterface;
-use App\Contracts\ViewEngineInterface;
+use App\Versyx\View\ViewEngineInterface;
 
 /**
  * Abstract base controller class.

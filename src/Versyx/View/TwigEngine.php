@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Versyx;
+namespace App\Versyx\View;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\Extension\DebugExtension;
-use App\Extensions\Twig\AssetExtension;
-use App\Extensions\Twig\DotenvExtension;
-use App\Extensions\Twig\SessionExtension;
-use App\Extensions\Twig\UrlExtension;
-use App\Contracts\ViewEngineInterface;
+use App\Versyx\View\Extensions\Twig\AssetExtension;
+use App\Versyx\View\Extensions\Twig\DotenvExtension;
+use App\Versyx\View\Extensions\Twig\SessionExtension;
+use App\Versyx\View\Extensions\Twig\UrlExtension;
+use App\Versyx\View\ViewEngineInterface;
 
 class TwigEngine implements ViewEngineInterface
 {
