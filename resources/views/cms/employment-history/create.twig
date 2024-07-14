@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div id="content" class="container pt-3 pt-md-0">
+        <h1 class="mt-3">Employment History</h1>
+
+        <div class="card mt-3">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Create new record</h5>
+            </div>
+            <div class="card-body">
+                <form action="{{ url('/cms/create/employment-history') }}" method="post">
+                    <div class="mb-3">
+                        <label for="employer" class="form-label">Employer</label>
+                        <input type="text" class="form-control" id="employer" name="employer">
+                    </div>
+                    <div class="mb-3">
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" class="form-control" id="position" name="position">
+                    </div>
+                    <div class="mb-3">
+                        <label for="time" class="form-label">Time</label>
+                        <input type="text" class="form-control" id="time" name="time" aria-describedby="timeFormatHelp">
+                        <div id="timeFormatHelp" class="form-text">Enter in format: YYYY - YYYY</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+{% endblock %}

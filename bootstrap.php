@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 /*----------------------------------------
  | Auto-load classes                      |
  ----------------------------------------*/
@@ -11,13 +8,14 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 /*----------------------------------------
- | Register service providers             |
+ | Create service container               |
  ----------------------------------------*/
 $app = new Versyx\Service\Container();
 
-$app->register(new Versyx\Providers\LogServiceProvider());
-$app->register(new Versyx\Providers\RouteServiceProvider());
-$app->register(new Versyx\Providers\ViewServiceProvider());
+/*----------------------------------------
+ | Register service providers             |
+ ----------------------------------------*/
+$app->register(new Versyx\Providers\AppServiceProvider());
 $app->register(new App\Providers\AppServiceProvider());
 
 /**
@@ -38,8 +36,8 @@ function app(mixed $dependency = null): mixed
  ----------------------------------------*/
 Versyx\Resolver::map(
     $app,
-    namespace: 'App\\Controllers',
-    directory: __DIR__ . '/app/Controllers'
+    namespace: 'App\\Http\\Controllers',
+    directory: __DIR__ . '/app/Http/Controllers'
 );
 
 /*----------------------------------------
