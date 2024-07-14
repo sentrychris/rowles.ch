@@ -19,7 +19,7 @@ class AppServiceProvider implements ServiceProviderInterface
         // e.g. $container[ApiClientInterface::class] = new ApiClient(...);
         //
         // Don't forget to register your providers in config/boostrap.php
-        
+
         return $container;
     }
 }

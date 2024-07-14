@@ -31,7 +31,24 @@ class ContactDetailController extends AbstractController
      */
     public function create()
     {
-        return $this->view('cms/contact-detail/create');
+        $formRoute = '/cms/contact-detail/create';
+
+        return $this->setViewData(compact('formRoute'))
+            ->view('cms/contact-detail/create');
+    }
+
+    /**
+     * Edit contact detail page.
+     */
+    public function edit(int $id, EntityManager $em)
+    {
+        $contactDetail = $em->getRepository(ContactDetail::class)
+            ->find($id);
+
+        $formRoute = '/cms/contact-detail/edit/'.$id;
+
+        return $this->setViewData(compact('contactDetail', 'formRoute'))
+            ->view('cms/contact-detail/create');
     }
 
     /**
@@ -50,7 +67,32 @@ class ContactDetailController extends AbstractController
         $entity = new ContactDetail();
         $entity->setTitle($data['title'])
             ->setLink($data['link'])
-            ->setText($data['text']);
+            ->setText($data['text'])
+            ->setSortOrder($data['sort_order']);
+
+        $em->persist($entity);
+        $em->flush();
+
+        return $response->redirect('/cms');
+    }
+
+    /**
+     * Update
+     * 
+     * @param EntityManager $em
+     * @param Request $request
+     * @param Response $response
+     */
+    public function update (int $id, EntityManager $em, Request $request, Response $response)
+    {
+        $data = $request->body();
+
+        $entity = $em->getRepository(ContactDetail::class)->find($id);
+    
+        $entity->setTitle($data['title'])
+            ->setLink($data['link'])
+            ->setText($data['text'])
+            ->setSortOrder($data['sort_order']);
 
         $em->persist($entity);
         $em->flush();
@@ -61,16 +103,14 @@ class ContactDetailController extends AbstractController
     /**
      * Delete
      * 
+     * @param int $id
      * @param EntityManager $em
-     * @param Request $request
      * @param Response $response
      */
-    public function delete(EntityManager $em, Request $request, Response $response)
+    public function delete(int $id, EntityManager $em, Response $response)
     {
-        $data = $request->body();
-
         $entity = $em->getRepository(ContactDetail::class)
-            ->find($data['id']);
+            ->find($id);
 
         $em->remove($entity);
         $em->flush();

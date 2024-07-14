@@ -9,19 +9,30 @@
                 <h5 class="mb-0">Create new record</h5>
             </div>
             <div class="card-body">
-                <form action="{{ url('/cms/create/employment-history') }}" method="post">
+                <form action="{{ url(formRoute) }}" method="POST">
+                    {% if employmentHistory %}
+                        <input type="hidden" name="_method" value="PUT">
+                    {% endif %}
                     <div class="mb-3">
                         <label for="employer" class="form-label">Employer</label>
-                        <input type="text" class="form-control" id="employer" name="employer">
+                        <input type="text" class="form-control" id="employer" name="employer" placeholder="E.g. Greymatter Technologies"
+                            value="{{ employmentHistory ? employmentHistory.employer : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="position" class="form-label">Position</label>
-                        <input type="text" class="form-control" id="position" name="position">
+                        <input type="text" class="form-control" id="position" name="position" placeholder="E.g. Senior Developer"
+                            value="{{ employmentHistory ? employmentHistory.position : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="time" class="form-label">Time</label>
-                        <input type="text" class="form-control" id="time" name="time" aria-describedby="timeFormatHelp">
+                        <input type="text" class="form-control" id="time" name="time" aria-describedby="timeFormatHelp" placeholder="E.g. 2021 - 2024"
+                            value="{{ employmentHistory ? employmentHistory.time : '' }}">
                         <div id="timeFormatHelp" class="form-text">Enter in format: YYYY - YYYY</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sort_order" class="form-label">Sort Order</label>
+                        <input type="number" min="1" step="1" class="form-control" id="sort_order" name="sort_order"
+                            value="{{ employmentHistory ? employmentHistory.sortOrder : 1 }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

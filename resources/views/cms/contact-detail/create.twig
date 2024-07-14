@@ -9,18 +9,29 @@
                 <h5 class="mb-0">Create new record</h5>
             </div>
             <div class="card-body">
-                <form action="{{ url('/cms/create/contact-detail') }}" method="post">
+                <form action="{{ url(formRoute) }}" method="post">
+                    {% if contactDetail %}
+                        <input type="hidden" name="_method" value="PUT">
+                    {% endif %}
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Email"
+                            value="{{ contactDetail ? contactDetail.title : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="link" class="form-label">Link</label>
-                        <input type="text" class="form-control" id="link" name="link">
+                        <input type="text" class="form-control" id="link" name="link" placeholder="E.g. mailto:me@versyx.dev"
+                            value="{{ contactDetail ? contactDetail.link : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Text</label>
-                        <input type="text" class="form-control" id="text" name="text">
+                        <input type="text" class="form-control" id="text" name="text" placeholder="E.g. me@versyx.dev"
+                            value="{{ contactDetail ? contactDetail.text : '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sort_order" class="form-label">Sort Order</label>
+                        <input type="number" min="1" step="1" class="form-control" id="sort_order" name="sort_order"
+                            value="{{ contactDetail ? contactDetail.sortOrder : 1 }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
