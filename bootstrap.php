@@ -24,21 +24,24 @@ $app->register(new App\Providers\AppServiceProvider());
  * @param mixed $dependency
  * @return mixed
  */
-function app(mixed $dependency = null): mixed
+function app (mixed $dependency = null): mixed
 {
     global $app;
     if (!$dependency) return $app;
     return $app->offsetExists($dependency) ? $app->offsetGet($dependency) : false;
 }
 
-/*----------------------------------------
- | Load dependency injection              | 
- ----------------------------------------*/
-Versyx\Resolver::map(
-    $app,
-    namespace: 'App\\Http\\Controllers',
-    directory: __DIR__ . '/app/Http/Controllers'
-);
+/**
+ *  App configuration API access method
+ *
+ * @param string $key
+ * @param ?string $default
+ * @return mixed
+ */
+function config (string $key, string $default = null): mixed
+{
+    return app('config')->get($key, $default);
+}
 
 /*----------------------------------------
  | Set exception handler                  |

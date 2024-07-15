@@ -22,8 +22,7 @@ class ContactDetailController extends AbstractController
     {
         $contactDetails = $em->getRepository(ContactDetail::class)->findAll();
 
-        return $this->setViewData(compact('contactDetails'))
-            ->view('cms/index.twig');
+        return $this->view('cms/index.twig', compact('contactDetails'));
     }
 
     /**
@@ -33,8 +32,7 @@ class ContactDetailController extends AbstractController
     {
         $formRoute = '/cms/contact-detail/create';
 
-        return $this->setViewData(compact('formRoute'))
-            ->view('cms/contact-detail/create');
+        return $this->view('cms/contact-detail/create', compact('formRoute'));
     }
 
     /**
@@ -47,8 +45,7 @@ class ContactDetailController extends AbstractController
 
         $formRoute = '/cms/contact-detail/edit/'.$id;
 
-        return $this->setViewData(compact('contactDetail', 'formRoute'))
-            ->view('cms/contact-detail/create');
+        return $this->view('cms/contact-detail/create', compact('contactDetail', 'formRoute'));
     }
 
     /**

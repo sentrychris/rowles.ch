@@ -22,8 +22,7 @@ class EmploymentHistoryController extends AbstractController
     {
         $employmentHistory = $em->getRepository(EmploymentHistory::class)->findAll();
 
-        return $this->setViewData(compact('employmentHistory'))
-            ->view('cms/index.twig');
+        return $this->view('cms/index.twig', compact('employmentHistory'));
     }
 
     /**
@@ -33,8 +32,7 @@ class EmploymentHistoryController extends AbstractController
     {
         $formRoute = '/cms/employment-history/create';
 
-        return $this->setViewData(compact('formRoute'))
-            ->view('cms/employment-history/create');
+        return $this->view('cms/employment-history/create', compact('formRoute'));
     }
 
     /**
@@ -49,8 +47,7 @@ class EmploymentHistoryController extends AbstractController
         
         $formRoute = '/cms/employment-history/edit/'.$id;
 
-        return $this->setViewData(compact('employmentHistory', 'formRoute'))
-            ->view('cms/employment-history/create');
+        return $this->view('cms/employment-history/create', compact('employmentHistory', 'formRoute'));
     }
 
     /**
