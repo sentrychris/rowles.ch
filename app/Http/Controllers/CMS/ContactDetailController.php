@@ -22,7 +22,7 @@ class ContactDetailController extends AbstractController
     {
         $contactDetails = $em->getRepository(ContactDetail::class)->findAll();
 
-        return $this->view('cms/index.twig', compact('contactDetails'));
+        return $this->view('cms/index', compact('contactDetails'));
     }
 
     /**

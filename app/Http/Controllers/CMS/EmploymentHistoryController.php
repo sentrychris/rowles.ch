@@ -22,7 +22,7 @@ class EmploymentHistoryController extends AbstractController
     {
         $employmentHistory = $em->getRepository(EmploymentHistory::class)->findAll();
 
-        return $this->view('cms/index.twig', compact('employmentHistory'));
+        return $this->view('cms/index', compact('employmentHistory'));
     }
 
     /**

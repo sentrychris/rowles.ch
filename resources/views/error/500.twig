@@ -7,7 +7,7 @@
     <div id="content" class="container">
         <div id="splash">
             <h1 id="main_heading">500.</h1>
-            <h3 id="main_subheading">An unexpected error has occurred :(</h3>
+            <h3 id="main_subheading">{{ error }}</h3>
             {% if debug and trace is not null %}
                 <hr>
                 <h4 id="main_subheading">Debug:</h4>

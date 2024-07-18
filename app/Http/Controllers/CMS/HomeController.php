@@ -22,6 +22,6 @@ class HomeController extends AbstractController
         $employmentHistory = $em->getRepository(EmploymentHistory::class)->findAll();
         $contactDetails = $em->getRepository(ContactDetail::class)->findAll();
 
-        return $this->view('cms/index.twig', compact('employmentHistory', 'contactDetails'));
+        return $this->view('cms/index', compact('employmentHistory', 'contactDetails'));
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Doctrine\ORM\EntityManager;
 use Versyx\Http\AbstractController;
 use App\Entities\EmploymentHistory;
+use App\Test;
 
 /**
  * Home controller.
